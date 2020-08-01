@@ -1,0 +1,251 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Abstrix Login </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{%static 'assets/img/favicon.ico' %}">
+
+	<!-- CSS here -->
+	
+    <link rel="stylesheet" href="{%static 'assets/css/main.css' %}"> 
+    <link rel="stylesheet" href="{%static 'assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{%static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap-datetimepicker.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style2.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    
+</head>
+<body>
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{%static 'assets/img/logo/loder1.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+<header class="container ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+        <a href="index.html"><img src="{%static 'assets/img/logo/abstrix_logo.png' %}" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse  navbar-collapse" id="navbarNav" style="margin-left:80%;">
+          <ul class="navbar-nav ">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="logout1">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+</header>
+<main>
+    <!--? Hero Start -->
+    <div class="card mx-auto">
+    <aside class="col-sm-7 mx-auto col-md-5 col-lg-4">
+        <div class="card mx-auto border-0">
+            <div class="text-center card-header border-bottom-0 bg-transparent">
+              <h1>Update Profile {{p_name}}</h1>
+    </div>
+
+    <div class="card-body pb-4">
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
+
+
+          
+          
+          
+          
+          <form action="register_info_patient" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="inputfirstname">First Name</label>
+              <input type="text" name="p-first-name" class="form-control" id="p-first-name" value = {{p_firstname}} readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputlastname">Last Name</label>
+              <input type="text" name="p-last-name" class="form-control" id="inputlastname" value = {{p_lastname}} readonly>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email</label>
+              <input type="email" name="p-email" class="form-control" id="p-email" placeholder="Email" required autofocus>
+            </div>
+            
+            <div class="form-group">
+                <label for="inputContact">Contact No.</label>
+              <input type="text" name="p-contact" class="form-control" id="p-contact" value = {{p_contact}} readonly>
+            </div>
+            
+            <div class="form-group">
+                <label for="inputAadhaar">Aadhaar No.</label>
+              <input type="text" name="p-aadhaar" class="form-control" id="p-aadhaar" placeholder="Aadhaar No." required autofocus>
+            </div>
+
+           <div class="form-group">
+              <label for="select-gender">Gender</label>
+              <select name="p-gender" class="form-control" id="p-gender" required>
+                <option value="Choice 1">Select any one</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+           </div>          
+          
+           <div class="form-group">
+            <label for="inputAge">Age (in years)</label>
+            <input type="text" class="form-control" name = "p-age" id="p-age" placeholder="Enter numeric value only" required>
+           </div>
+          
+           <div class="form-group">
+            <label for="inputWeight">Weight (in kgs)</label>
+            <input type="text" class="form-control" name= "p-weight" id="p-weight" placeholder="Weight" required>
+           </div>
+
+           <div class="form-group">
+            <label for="inputBlood">Blood Group</label>
+            <select name="p-blood" class="form-control" id="p-blood">
+            <option value="Choice 1">Select any one</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            </select>
+        </div> 
+
+            
+            <div class="form-group">
+              <label for="inputAddress">Address</label>
+              <input type="text" class="form-control" name ="p-address" id="p-address" placeholder="1234 Main St" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Country</label>
+              <select class="form-control" name = "p-country" id = "p-country"required>
+                  <option value="India">India</option>
+                  <option value="Other">Other</option>
+              </select>
+            </div>
+           
+            <div class="form-group">
+              <label for="inputState">State</label>
+              <select name="p-state" class="form-control" id="p-state">
+                <option value="Choice 1">Select any one</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Other">Other</option>
+              </select>
+           </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputCity">City</label>
+                  <input type="text" class="form-control" name ="p-city" id="p-city" placeholder="Enter City" required> 
+                </div>
+              <div class="form-group col-md-12">
+                <label for="inputPostal">Postal Code</label>
+                <input type="text" class="form-control" name ="p-postal" id="p-postal" placeholder="Enter Postal Code" required>
+              </div>
+            </div>
+            
+            <div class="form-group pb-2">
+              <label for="profilepic">Upload Photo</label>
+              <input type="file" class="form-control-file" name= "p-profile-img" id="p-profile-img" required accept="image/*">
+            </div>
+            
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" id="customCheck1" type="checkbox">
+              <label class="custom-control-label" for="customCheck1">I take responsibility of above details. They are correct as per my knowledge</label>
+            </div>
+            <div class="g-reCAPTCHA" data-sitekey="6LfZO7UZAAAAAJc37sk9sUAhP93rv1FC6Kk9eN7z"></div>
+            <div class="text-center pt-4">
+              <button type="submit" class="btn btn-primary" value="submit">Confirm</button>
+            </div>
+            
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+</div>
+</main>
+
+
+
+<!-- JS here -->
+<script src="https://www.google.com/reCAPTCHA/api.js" async defer></script>
+<script src="{%static './assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+<!-- Jquery, Popper, Bootstrap -->
+<script src="{%static './assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+<script src="{%static './assets/js/popper.min.js' %}"></script>
+<script src="{%static './assets/js/bootstrap.min.js' %}"></script>
+<!-- Jquery Mobile Menu -->
+<script src="{%static './assets/js/jquery.slicknav.min.js' %}"></script>
+
+<!-- Jquery Slick , Owl-Carousel Plugins -->
+<script src="{%static './assets/js/owl.carousel.min.js' %}"></script>
+<script src="{%static './assets/js/slick.min.js' %}"></script>
+<!-- One Page, Animated-HeadLin -->
+    <script src="{%static './assets/js/wow.min.js' %}"></script>
+    <script src="{%static './assets/js/animated.headline.js' %}"></script>
+    <script src="{%static './assets/js/jquery.magnific-popup.js' %}"></script>
+
+ 
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="{%static './assets/js/plugins.js' %}"></script>
+    <script src="{%static './assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    <script src="{% static 'assets/js/moment.min.js' %}"></script>
+    <script src="{% static 'assets/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+    
+    </body>
+</html>

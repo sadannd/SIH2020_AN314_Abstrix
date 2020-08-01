@@ -1,0 +1,680 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- add-patient24:06-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+    <title>Abstrix - Add Patient</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap-datetimepicker.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style2.css' %}">
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+			<div class="header-left">
+				<a href="index-2.html" class="logo">
+					<img src="{% static 'assets/img/logo/abstrix_wobg.png' %}" height  ="35" alt=""> <span>Abstrix</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+                <li class="nav-item dropdown d-none d-sm-block">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge badge-pill bg-danger float-right">3</span></a>
+                    <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span>Notifications</span>
+                        </div>
+                        <div class="drop-scroll">
+                            <ul class="notification-list">
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+											<span class="avatar">
+												<img alt="John Doe" src="{% static 'assets/img/user.jpg' %}" class="img-fluid">
+											</span>
+											<div class="media-body">
+												<p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
+												<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+											</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+											<span class="avatar">V</span>
+											<div class="media-body">
+												<p class="noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
+												<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+											</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+											<span class="avatar">L</span>
+											<div class="media-body">
+												<p class="noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
+												<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+											</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+											<span class="avatar">G</span>
+											<div class="media-body">
+												<p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
+												<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+											</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="notification-message">
+                                    <a href="activities.html">
+                                        <div class="media">
+											<span class="avatar">V</span>
+											<div class="media-body">
+												<p class="noti-details"><span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">Private chat module</span></p>
+												<p class="noti-time"><span class="notification-time">2 days ago</span></p>
+											</div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="topnav-dropdown-footer">
+                            <a href="activities.html">View all Notifications</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+							<img class="rounded-circle" src="{% static 'assets/img/user.jpg' %}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span>{{dname}}</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="profile">My Profile</a>
+						<a class="dropdown-item" href="edit-profile">Edit Profile</a>
+						<a class="dropdown-item" href="settings">Settings</a>
+						<a class="dropdown-item" href="logout1">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="profile">My Profile</a>
+                    <a class="dropdown-item" href="edit-profile">Edit Profile</a>
+                    <a class="dropdown-item" href="settings">Settings</a>
+                    <a class="dropdown-item" href="logout1">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li>
+                            <a href="doctor_dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                        </li>
+						
+                        <li class="active">
+                            <a href="#"><i class="fa fa-wheelchair"></i> <span>Patient Info</span></a>
+                        </li>
+                        
+                        <li>
+                            <a href="settings.html"><i class="fa fa-cog"></i> <span>Settings</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+<div class="page-wrapper">
+<div class="content">
+    <div class="card mx-auto pb-5">
+                
+        <div class="border-0">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <div class="row text-center mt-3">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title"><b>Add Patient</b></h4>
+                    </div>
+                </div>
+                <!-- Nav pills -->
+                <ul class="nav nav-pills justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="pill" href="#personal-tab">Personal Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#prescription-tab">Prescription</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#appointment-tab">Appointment History</a>
+                    </li>
+                </ul>
+            </div>
+                
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <!--PERSONAL TABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB-->
+                    
+                    <div class="tab-pane active" id="personal-tab">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <div class="row justify-content-center mb-5">
+                                    <img class="rounded-circle" src="{% static './assets/img/user-02.jpg' %}" alt="patient_pic">
+                                </div>
+                                <form action = "patient_treatment" method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>First Name <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="text" name = "p-first-name" value = {{p_firstname}} readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Last Name <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="text" name = "p-last-name" value = {{p_lastname}} readonly>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Email <span class="text-danger">*</span></label>
+                                                <input class="form-control" type="email" name = "p-email" value = {{p_firstname}} readonly>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Age</label>
+                                                <input type="text" class="form-control" name = "p-age" value = "{{p_age}}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <input type="text" class="form-control" name = "p-gender" value = {{p_gender}} readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Blood Group<span class="text-danger">*</span></label>
+                                                <input class="form-control" type="p-bloodgrp" name = "p-bloodgrp" value = {{p_bloodgrp}} readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Address</label>
+                                                        <input type="text" class="form-control" name = "p-address" value = {{p_address}} readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>Country</label>
+                                                        <input type="text" class="form-control" name = "p-city" value = {{p_country}} readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>City</label>
+                                                        <input type="text" class="form-control" name = "p-city" value = {{p_city}} readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>State</label>
+                                                        <input type="text" class="form-control" name = "p-state" value = {{p_state}} readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-md-6 col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>Postal Code</label>
+                                                        <input type="text" class="form-control" name = "p-postal" value = {{p_postal}} readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Contact </label>
+                                                <input class="form-control" type="text" name = "p-number" value = {{p_contact}} readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Dr. UID </label>
+                                                <input class="form-control" type="text" name = "d-uid" placeholder= "Dr. UID" required autofocus>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                    <div class="form-group row justify-content-center align-items-center text-center">
+                                        <div class="col-sm-2">
+                                            <label for="inputlastname">Case No.</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="p-caseno" class="form-control" id="p-caseno" placeholder="Case No." required autofocus>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button id="generate_case" name="generate_case" class="btn btn-primary" onclick="case_generate_fun()">Generate Case</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="m-t-20 text-center">
+                                        <button class="btn btn-primary submit-btn">Save Patient</button>
+                                    </div>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <!--Prescription TABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB-->
+                    <div class="tab-pane fade" id="prescription-tab">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <form action ="patient_prescription" method="POST">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Patient's ID<span class="text-danger"></span></label>
+                                                <input class="form-control" name= "p-uid" type="text" value={{p_uid}} readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Case ID<span class="text-danger"></span></label>
+                                                <input class="form-control" name= "p-caseno" type="text" value={{p_caseno}} readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="infection">Infection type</label>
+                                                    <select name="p-infection" class="form-control" id="p-infection">
+                                                    <option value="Choice 1">Select any one</option>
+                                                    <option value="Viral">Viral</option>
+                                                    <option value="Bacterial">Bacterial</option>
+                                                    <option value="Fungal">Fungal</option>
+                                                    <option value="Parasite">Parasite</option>
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Symptoms</label>
+                                                <textarea class="form-control" name = "p-symptoms" id = "p-symptoms" ></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Weight<span class="text-danger">*</span></label>
+                                                <input class="form-control" name = "p-weight" id = "p-weight"  type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Blood Pressure (BP) <span class="text-danger">*</span></label>
+                                                <input class="form-control" name = "p-bp" id = "p-bp" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Diagnosis</label>
+                                                <textarea class="form-control" name = "p-diagnosis" id = "p-diagnosis" ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <label>Medicines<span class="text-danger"></span></label>
+                                    
+                                    <div class="row medictable" style="font-size: 10px;">
+                                        <div class="col-4">
+                                            <span>Name</span>
+                                        </div>
+                                        <div class="col-2">
+                                            <span>Duration (in days)</span>
+                                        </div>   
+                                        <div class="col">
+                                            <span>Morning</span>
+                                        </div>   
+                                        <div class="col">
+                                            <span>Afternoon</span>
+                                        </div>   
+                                          
+                                        <div class="col">
+                                            <span>Night</span>
+                                        </div>   
+                                          
+                                    </div>
+                          
+                                    <div class="row mt-2">
+                                            <div class="col-4">
+                                                <span><input class="form-control"  type="text" name = "m-name" id = "m-name" id="name"> </span>
+                                            </div>
+                                            <div class="col-2">
+                                                <span><input class="col-sm-6 form-control" type="number" name = "m-duration" id="m-duration"></span>
+
+                                            </div>   
+                                            <div class="col">
+                                                <span class="text-center"><input type="checkbox" name = "m-morning" id="m-morning" value="0"></span>
+                                                
+                                            </div>   
+                                            <div class="col">
+                                                <span class="text-center"><input type="checkbox" name = "m-afternoon" id="m-afternoon" value="0"></span>
+                                                
+                                            </div>   
+                                              
+                                            <div class="col">
+                                                <span class="text-center"><input type="checkbox" name = "m-night" id="m-night" value="0"></span>
+                                                
+                                            </div>   
+                                             
+                                            
+                                        
+                                        </div>
+                                        <div id='medictableform'></div> 
+                                            <div class="col-sm text-right px-0 mt-2">
+                                                <input type="button" class="add-row" value="Add" />
+                                                <input type="button" class="delete-row" value="Delete" />
+                                            </div>
+                                        
+                                        
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="test">Test Recommendation</label>
+                                                    <select name="p-test" class="form-control" id="p-test">
+                                                    <option value="Choice 1">Select any one</option>
+                                                    <option value="CBC">CBC</option>
+                                                    <option value="ESR">ESR</option>
+                                                    <option value="Hb">Hb</option>
+                                                    <option value="WBC">WBC</option>
+                                                    <option value="VDRL">VDRL</option>
+                                                    <option value="HIV">HIV</option>
+                                                    <option value="X-Ray">X-Ray</option>
+                                                    <option value="Widal">Widal test</option>
+                                                    <option value="RA">RA</option>
+                                                    <option value="CAT">CAT Scan</option>
+                                                    <option value="MRI">MRI</option>
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="upload-report">Upload Report</label>
+                                            <input type="file" name="p-report" class="form-control" id="p-report">
+                                        </div>
+                                    </div>
+
+                                        
+                                    <div class="m-t-20 text-center">
+                                        <button class="btn btn-primary submit-btn">Save Patient</button>
+                                        
+                                    </div>
+                                    
+                                </form> 
+                                
+                                    
+                                <div style="text-align: center">
+                                    <a href="close_case" class="button large hpbottom">Close Case</a>
+                                </div>
+                                    
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <!--APPOINTMENT TABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB-->
+                    <div class="tab-pane fade" id="appointment-tab">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped custom-table">
+                                        <thead>
+                                            
+                                            <tr>
+                                                
+                                                <th>Appointment ID</th>
+                                                <th>Appointment Date</th>
+                                                <th>Doctor No.</th>
+                                                <th>Symptoms</th>
+                                                <th>Medicines</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i,j in main3 %}
+                                            <tr>
+                                                <td>{{i.p_caseno}}</td>
+                                                <td>{{j.t_date}}</td>
+                                                <td>{{i.d_uid}}</td>
+                                                <td>{{i.p_symptoms}}</td>
+                                                <td><button type="button" name="btn1_med" class="btn btn-primary" data-toggle="modal" data-target="#medicineModal" value ={{i.p_caseno}} url-endpoint='{url "get_medicine"}'>View</button></td>
+                                                
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="medicineModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Medicines</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped custom-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Medicine Name</th>
+                                                            <th>Duration</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="row2">
+                                                        
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button"  name="btn1_close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                </div>
+
+                    
+        
+
+          
+                
+    </div>
+</div>
+</div>
+    
+
+<div class="sidebar-overlay" data-reff=""></div>
+
+    <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/js/select2.min.js' %}"></script>
+	<script src="{% static 'assets/js/moment.min.js' %}"></script>
+	<script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    <script src="{% static './assets/js/plugins.js' %}"></script>
+    <script src="{% static './assets/js/main.js' %}"></script>
+
+    <script type="text/javascript">
+        function case_generate_fun(){
+            document.getElementById('p-caseno').value = Math.floor(Math.random() * 10000);
+            document.getElementById('generate_case').disabled = true;   
+
+        }
+    </script>
+    <script type="text/javascript">
+       
+        var checkbuff = () => {
+            
+            $('input[type="checkbox"]').click(function(){
+                if($(this).is(":checked")){
+                    $(this).val(1);
+                    console.log("Y");
+                    
+                }
+                //else if($(this).is(":not(:checked)")){
+                //else if($(this).is(":not(:checked)")){    
+                //else {  
+                   // $(this).val(0);
+                   // console.log("N");
+               // }
+            });
+    
+    
+        
+            }
+        
+        
+        $(document).ready(function(){
+            var counter = 2;
+            
+           
+            
+            checkbuff();
+
+
+            $(".add-row").click(function(){
+            
+            var markup = "<div class='row mt-2' id='medic" + counter + "'><div class='col-4'><span><input class='form-control' type='text' name ='m-"+counter+"name' id='m-"+counter+"name''></span></div><div class='col-2'><span><input class='col-sm-6 form-control' type='number' name ='m-"+counter+"duration' id='m-"+counter+"duration'></span></div><div class='col'><span class='text-center'><input type='checkbox' name ='m-"+counter+"morning' id='m-"+counter+"morning'></span></div><div class='col'><span class='text-center'><input type='checkbox' name ='m-"+counter+"afternoon' id='m-"+counter+"afternoon'></span></div><div class='col'><span class='text-center'><input type='checkbox' name ='m-"+counter+"night' id='m-"+counter+"night'></span></div></div>";
+
+            $("#medictableform").append(markup);
+            checkbuff();
+            counter++;
+            
+
+
+        });
+
+
+
+        // Find and remove selected table rows
+        $(".delete-row").click(function(){
+            $('#medic'+tid).remove(); 
+            tid -= 1;
+            });
+    });
+
+    </script>
+
+    <script>
+        var endpoint = "get_medicine"
+        var endpoint1 = "close_case"
+        var medicines = []
+        var duration = []
+        
+        //$(document).ready(function(){
+            $('button[name="btn1_med"]').click(function(){
+                var caseno  = $(this).val();
+                //console.log(this.value)
+                console.log(caseno)
+                $.ajax({
+                    url:'get_medicine',
+                    type: 'get',
+                    data: {
+                        pcaseno : caseno
+                    },
+                    success: function(data2){
+                        medicines = data2.medicines
+                        duration = data2.duration
+                        
+                        console.log(medicines)
+                        console.log(duration)
+                        $("#t1").remove()
+                        for(i = 0;i<medicines.length;i++){
+                            $("#row2").append('<tr id="t1"><td>'+ medicines[i] +'</td><td>'+duration[i] +'</td></tr>')
+                        }
+                        
+                        //$("#m1-dur").append('<li>'+ data2.duration +'</li>')
+                        
+
+
+                        
+                    }
+                })
+                
+            });
+
+            $('button[name="btn1_close"]').click(function(){
+                $("#t1").remove()
+            });
+
+        //});
+    </script>
+    
+</body>
+
+
+<!-- add-patient24:07-->
+</html>

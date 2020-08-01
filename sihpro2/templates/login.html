@@ -1,0 +1,215 @@
+{% load static %} 
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Abstrix Login </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+
+	<!-- CSS here -->
+	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animated-headline.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/magnific-popup.cs' %}s">
+	<link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    
+</head>
+<body>
+    <!-- ? Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'assets/img/logo/loder1.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+<header>
+    <!--? Header Start -->
+    <div class="header-area">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <!-- Logo -->
+                    <div class="col-xl-2 col-lg-2 col-md-1">
+                        <div class="logo">
+                            <a href="index_icon"><img src="{% static 'assets/img/logo/abstrix_logo.png' %}" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-10 col-lg-10 col-md-10">
+                        <div class="menu-main d-flex align-items-center justify-content-end">
+                            <!-- Main-menu -->
+                            <div class="main-menu f-right d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="home">Home</a></li>
+                                        <li><a href="about">About</a></li>
+                                        <li><a href="blog">Blog</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog">Blog</a></li>
+                                                <li><a href="blog_details">Blog Details</a></li>
+                                                <li><a href="elements">Element</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>   
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+</header>
+<main>
+    <!--? Hero Start -->
+    <div class="card mx-auto">
+    <aside class="col-sm-7 mx-auto col-md-5 col-lg-4">
+        <div class="card mx-auto border-0">
+            <div class="card-header border-bottom-0 bg-transparent">
+                <ul class="nav nav-tabs justify-content-center pt-4" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active text-primary" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login"
+                      aria-selected="true">I am a Patient</a>
+                </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-primary" id="pills-register-tab" data-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register"
+             aria-selected="false">I am a Doctor</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body pb-4">
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
+          <form action="login_patient" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="number" name="contact-number" class="form-control" id="contact-number" placeholder="Mobile Number" required autofocus>
+            </div>
+
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" id="password" id="password" placeholder="Password" required>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" id="customCheck1" checked="" type="checkbox">
+              <label class="custom-control-label" for="customCheck1">Remember me</label>
+            </div>
+
+            <div class="text-center pt-4">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+
+            <div class="text-center pt-2">
+              <a class="btn-link text-primary" href="#">Forgot Your Password?</a>
+            </div>
+            <br>
+            <br>
+            <div class="text-center pt-2">
+              <a class="btn-link text-primary" href="signup">Don't have an account??</a>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="pills-register-tab">
+          <form action="login_doctor" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="number" name="contact-number" class="form-control" id="contact-number" placeholder="Mobile Number" required autofocus>
+            </div>
+
+            <div class="form-group">
+              <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+              <input class="custom-control-input" id="customCheck1" checked="" type="checkbox">
+              <label class="custom-control-label" for="customCheck1">Remember me</label>
+            </div>
+
+            <div class="text-center pt-4">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+
+            <div class="text-center pt-2">
+              <a class="btn-link text-primary" href="#">Forgot Your Password?</a>
+            </div>
+            <br>
+            <br>
+            <div class="text-center pt-2">
+              <a class="btn-link text-primary" href="signup">Don't have an Account??</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+        </div>
+    </aside>
+</div>
+    </main>
+    
+   
+
+    <!-- JS here -->
+
+    <script src="{% static './assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{% static './assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static './assets/js/popper.min.js' %}"></script>
+    <script src="{% static './assets/js/bootstrap.min.js' %}"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{% static './assets/js/jquery.slicknav.min.js' %}"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{% static './assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static './assets/js/slick.min.js' %}"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{% static './assets/js/wow.min.js' %}"></script>
+    <script src="{% static './assets/js/animated.headline.js' %}"></script>
+    <script src="{% static './assets/js/jquery.magnific-popup.js' %}"></script>
+
+    <!-- Date Picker -->
+    <script src="{% static './assets/js/gijgo.min.js' %}"></script>
+    <!-- Nice-select, sticky -->
+    <script src="{% static './assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static './assets/js/jquery.sticky.js' %}"></script>
+    
+    <!-- counter , waypoint -->
+    <script src="{% static './assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static './assets/js/waypoints.min.js' %}"></script>
+    <script src="{% static './assets/js/jquery.countdown.min.js' %}"></script>
+    <!-- contact js -->
+    <script src="{% static './assets/js/contact.js' %}"></script>
+    <script src="{% static './assets/js/jquery.form.js' %}"></script>
+    <script src="{% static './assets/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static './assets/js/mail-script.js' %}"></script>
+    <script src="{% static './assets/js/jquery.ajaxchimp.min.js' %}"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="{% static './assets/js/plugins.js' %}"></script>
+    <script src="{% static './assets/js/main.js' %}"></script>
+    </body>
+</html>
