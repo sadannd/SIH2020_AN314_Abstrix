@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico'%}">
-    <title>Abstrix - Dashboard 2</title>
+    <title>Abstrix - Patient Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -87,39 +87,64 @@
                     </div>
                 </div>
         
-                <div class="row" style="margin-top: 2rem !important;">
+                <div class="row justify-content-center" style="margin-top: 2rem !important;">
                     <div class="col-sm-3">
                     <form action="location1" method="POST">
                         {% csrf_token %}
                         <div class="md-form my-3">
-                            <label for="select-gender">Location</label>
+                            <label for="id_state">Location</label>
                             <select name="location" class="form-control" id="id_state" required>
-                            <option value="1">Maharashtra</option>
-                            <option value="2">Karnataka</option>
-                            <option value="3">Gujarat</option>
+                            <option value="values1">Maharashtra</option>
+                            <option value="values2">Karnataka</option>
+                            <option value="values3">Gujarat</option>
                             </select>
                         </div>
                     </form>
                     </div>
+                    <div class="col-sm-3">
+                        <form action="location1" method="POST">
+                            {% csrf_token %}
+                            <div class="md-form my-3">
+                                <label for="id_age">Age</label>
+                                <select name="age" class="form-control" id="id_age" required>
+                                <option value="values1">Below 16</option>
+                                <option value="values2">16-30</option>
+                                <option value="values3">Above 30</option>
+                                </select>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-sm-3">
+                            <form action="location1" method="POST">
+                                {% csrf_token %}
+                                <div class="md-form my-3">
+                                    <label for="id_gender">Gender</label>
+                                    <select name="gender" class="form-control" id="id_gender" required>
+                                    <option value="values1">Male</option>
+                                    <option value="values2">Female</option>
+                                    </select>
+                                </div>
+                            </form>
+                            </div>
                 </div>
 
                 <div class="row text-center justify-content-center" style="margin-bottom: 2rem;">
                     
                     <div class="col-sm-3" style="width:30vw !important; height: 35vh !important;">
-                        <h4>Maharashtra</h4>
+                        <h4>Location-wise</h4>
                         <div>
                             <canvas id="myChart2" width="640" height="250"></canvas>
                         </div>
                     </div>
                     <div class="col-sm-3" style="width:30vw !important; height: 35vh !important;">
-                        <h4>Karnataka</h4>
+                        <h4>Age-wise</h4>
                         <div>
                             <canvas id="myChart3" width="640" height="250"></canvas>
         
                         </div>
                     </div>
                     <div class="col-sm-3" style="width:30vw !important; height: 35vh !important;">
-                        <h4>Gujarat</h4>
+                        <h4>Gender-wise</h4>
                         <div>
                             <canvas id="myChart4" width="640" height="250"></canvas>
                         </div>
@@ -172,10 +197,6 @@
 
     <script>
         var endpoint = 'fun1'
-
-        const Maharashtra = [ 10, 20, 30, 40];
-        const Karnataka = [100, 200, 300, 400, 500]
-        const Gujarat = [50, 100, 200]
         
         var count1 = []
         var label1 = []
@@ -185,6 +206,8 @@
         var label3 = []
         var count4 = []
         var label4 = []
+        
+        
 
     
         var c1 = document.getElementById("myChart1");
@@ -210,15 +233,9 @@
                 count2 = data1.values2
                 count3 = data1.values3
                 count4 = data1.values4
-            
-                
-                mychart1_func()
-                mychart2_func()
-                mychart3_func()
-                mychart4_func()
-                
-    
-                
+
+                mychart1_func();
+ 
             },
             error: function(error_data){
                 console.log("error")
@@ -226,10 +243,10 @@
             }
         })
     
-        function mychart1_func(data){
-            console.log(data)
+        function mychart1_func(){
+       
             var ctx = document.getElementById('myChart1').getContext('2d');
-            ctx.clearRect(0, 0, 640, 250);
+          
 
             ctx.height = 1;
                 var myChart = new Chart(ctx, {
@@ -238,7 +255,7 @@
                         labels:label1,
                         datasets: [{
                             label: 'count',
-                            data: data,
+                            data: count1,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
@@ -267,17 +284,19 @@
 
                 myChart.update();
         }
-        function mychart2_func(){
+        function mychart2_func(temp){
+      
             var ctx = document.getElementById('myChart2').getContext('2d');
+            
             ctx.width = 1;
          
-                var myChart = new Chart(ctx, {
+                var myChart = new Chart(ctx, {  
                     type: 'bar',
                     data: {
                         labels:label1,
                         datasets: [{
                             label: 'count',
-                            data: count2,
+                            data: temp,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
@@ -308,7 +327,7 @@
         }
 
         
-        function mychart3_func(){
+        function mychart3_func(temp){
             var ctx = document.getElementById('myChart3').getContext('2d');
             ctx.width = 1;
                 var myChart = new Chart(ctx, {
@@ -317,7 +336,7 @@
                         labels:label1,
                         datasets: [{
                             label: 'count',
-                            data: count3,
+                            data: temp,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
@@ -343,7 +362,7 @@
                    
                 });
         }
-        function mychart4_func(){
+        function mychart4_func(temp){
             var ctx = document.getElementById('myChart4').getContext('2d');
             ctx.width = 1;
 
@@ -353,7 +372,7 @@
                         labels:label1,
                         datasets: [{
                             label: 'count',
-                            data: count4,
+                            data: temp,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
@@ -381,19 +400,70 @@
         }
        
         $("#id_state").change(function () {
-
+        
+            var count22 =[]
+         
             var stateId = $(this).val();  // get the selected state ID from the HTML input
-      
+            console.log(stateId)
             $.ajax({                       // initialize an AJAX request
                 url:endpoint,
                 data: {
                     'state': stateId       // add the state id to the GET parameters
                   },
-                success: function(data){
-           
-                
+                success: function(data1){
+                   
+                    count22 = data1.values22
+                  
+                    mychart2_func(count22);
                     
-                    mychart1_func(data);
+                    
+                }
+      
+          });
+
+        })
+
+        $("#id_age").change(function () {
+           
+        
+            var count33 =[]
+        
+            var stateId = $(this).val();  // get the selected state ID from the HTML input
+         
+            $.ajax({                       // initialize an AJAX request
+                url:endpoint,
+                data: {
+                    'state': stateId       // add the state id to the GET parameters
+                  },
+                success: function(data1){
+                    
+                    count33 = data1.values33
+                  
+                    mychart3_func(count33);
+                    
+                    
+                }
+      
+          });
+
+        })
+
+        $("#id_gender").change(function () {
+          
+          
+        
+            var count44 =[]
+            var stateId = $(this).val();  // get the selected state ID from the HTML input
+            
+            $.ajax({                       // initialize an AJAX request
+                url:endpoint,
+                data: {
+                    'state': stateId       // add the state id to the GET parameters
+                  },
+                success: function(data1){
+                  
+                    count44 = data1.values44
+                    mychart4_func(count44);
                     
                     
                 }

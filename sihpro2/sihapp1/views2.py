@@ -69,41 +69,64 @@ def fun1(request, *args, **kwargs):
     #dataset = pd.read_csv(r'C:\Users\khede\OneDrive\Desktop\sih2020data')
     ##reg5.fit([[dataset.a_Bacteria,dataset.a_Level,dataset.a_Year]],dataset.c_Cases)
     #print(reg5.predict([(1,3,2020)]))
-    print('hello')
+    state = request.GET.get('state')
+    print(state)
     #reg2 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\reg1.sav', 'rb'))
     #print(reg2.predict([(0,25,4,28,1,0,3,3)]))
-    reg3 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\General1.sav', 'rb'))
-    reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location1.sav', 'rb'))
-    reg5 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location2.sav', 'rb'))
-    reg6 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location3.sav', 'rb'))
     x=[]
     x1=[]
     x2=[]
     x3=[]
+    if state == "values1":
+        reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\General1.sav', 'rb'))
+        for level in range (1,5):       
+            x1.append(reg4.predict([(1,level,2030)])[0])
+
+        print(x1)
+    elif state =="values2":
+        reg5 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location2.sav', 'rb'))
+        for level in range (1,5):       
+            x1.append(reg5.predict([(1,level,2030)])[0])
+
+        print(x1)
+    elif state == "values3":
+        reg6 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location3.sav', 'rb'))
+        for level in range (1,5):       
+            x1.append(reg6.predict([(1,level,2030)])[0])
+
+        print("This is x1",x1)
+
+
+    reg3 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\General1.sav', 'rb'))
+    #reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location1.sav', 'rb'))
+    #reg5 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location2.sav', 'rb'))
+    #reg6 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location3.sav', 'rb'))
+    
 
     labelsx = ["Level1", "Level2", "Level3", "Level4"]
     for level in range (1,5):       
         x.append(reg3.predict([(1,level,2030)])[0])
     
-    print(x)
-    for level in range (1,5):       
-        x1.append(reg4.predict([(1,level,2030)])[0])
+    print("This is x",x)
+
+    ##for level in range (1,5):       
+    ##    x1.append(reg4.predict([(1,level,2030)])[0])
     
-    print(x1)
-    for level in range (1,5):       
-        x2.append(reg5.predict([(1,level,2030)])[0])
+    ##print(x1)
+    #for level in range (1,5):       
+    #    x2.append(reg5.predict([(1,level,2030)])[0])
     
-    print(x2)
-    for level in range (1,5):       
-        x3.append(reg6.predict([(1,level,2030)])[0])
+    #print(x2)
+    #for level in range (1,5):       
+    #    x3.append(reg6.predict([(1,level,2030)])[0])
     
-    print(x3)
+    #print(x3)
+    
     data1 = {
         "labelsx":labelsx,
         "values1":x,
-        "values2":x1,
-        "values3":x2,
-        "values4":x3,
+        "values22":x1,
+        
 
     }
     return JsonResponse(data1)
