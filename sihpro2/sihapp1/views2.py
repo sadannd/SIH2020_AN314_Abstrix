@@ -70,6 +70,8 @@ def fun1(request, *args, **kwargs):
     ##reg5.fit([[dataset.a_Bacteria,dataset.a_Level,dataset.a_Year]],dataset.c_Cases)
     #print(reg5.predict([(1,3,2020)]))
     state = request.GET.get('state')
+    state_age = request.GET.get('state_age')
+    state_gender = request.GET.get('state_gender')
     print(state)
     #reg2 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\reg1.sav', 'rb'))
     #print(reg2.predict([(0,25,4,28,1,0,3,3)]))
@@ -122,6 +124,8 @@ def fun1(request, *args, **kwargs):
     
     #print(x3)
     
+
+
     data1 = {
         "labelsx":labelsx,
         "values1":x,
