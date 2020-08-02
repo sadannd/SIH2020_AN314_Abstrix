@@ -82,19 +82,19 @@ def fun1(request, *args, **kwargs):
     if state == "values1":
         reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\General1.sav', 'rb'))
         for level in range (1,5):       
-            x1.append(reg4.predict([(1,level,2030)])[0])
+            x1.append(reg4.predict([(1,level,2050)])[0])
 
         print(x1)
     elif state =="values2":
         reg5 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location2.sav', 'rb'))
         for level in range (1,5):       
-            x1.append(reg5.predict([(1,level,2030)])[0])
+            x1.append(reg5.predict([(1,level,2050)])[0])
 
         print(x1)
     elif state == "values3":
         reg6 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location3.sav', 'rb'))
         for level in range (1,5):       
-            x1.append(reg6.predict([(1,level,2030)])[0])
+            x1.append(reg6.predict([(1,level,2050)])[0])
 
         print("This is x1",x1)
 
