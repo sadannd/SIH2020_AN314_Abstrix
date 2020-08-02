@@ -48,14 +48,17 @@ class Patient_Treatment(models.Model):
     t_date = models.DateField()
     t_time = models.TimeField()
     d_uid = models.IntegerField()
-    p_uid = models.IntegerField()
+    p_unique_id = models.CharField(max_length=100)
     p_caseno = models.IntegerField()
     p_age = models.IntegerField()
     p_gender = models.CharField(max_length=100)
+    p_bloodgrp = models.CharField(max_length=100)
+    p_city = models.CharField(max_length=100)
+    p_state = models.CharField(max_length=100)
 
 class Patient_Treatment_Diagnosis(models.Model):
     d_uid = models.IntegerField()
-    p_uid = models.IntegerField()
+    p_unique_id = models.CharField(max_length=100)
     p_caseno = models.IntegerField()
     p_infection = models.CharField(max_length=100)
     p_symptoms = models.CharField(max_length=100)
@@ -64,7 +67,7 @@ class Patient_Treatment_Diagnosis(models.Model):
     p_diagnosis = models.CharField(max_length=500)
     
 class Patient_Treatment_Medicines(models.Model):
-    p_uid = models.IntegerField()
+    p_unique_id = models.CharField(max_length=100)
     p_caseno = models.IntegerField()
     p_medicine = models.CharField(max_length=100)
     p_med_duration = models.IntegerField()

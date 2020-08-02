@@ -286,13 +286,13 @@ def login_doctor(request):
                 patient_info_id = Patient_Treatment.objects.filter(d_uid = d_id)
                 p_list_id = []
                 for i in patient_info_id:
-                    p_list_id.append(i.p_uid)
+                    p_list_id.append(i.p_unique_id)
                 print(p_list_id)
                 
                 #p_name = []
                 #p_diagnosis = []
-                patient_info_id1 = Patient_Treatment.objects.filter(p_uid__in = p_list_id, d_uid = d_id).order_by('id')
-                patient_info_id3 = Patient_Treatment_Diagnosis.objects.filter(p_uid__in = p_list_id, d_uid = d_id ).only('p_infection', 'p_diagnosis').order_by('id')
+                patient_info_id1 = Patient_Treatment.objects.filter(p_unique_id__in = p_list_id, d_uid = d_id).order_by('id')
+                patient_info_id3 = Patient_Treatment_Diagnosis.objects.filter(p_unique_id__in = p_list_id, d_uid = d_id ).only('p_unique_id','p_infection', 'p_diagnosis').order_by('id')
                 
                 main2 = zip(patient_info_id1,patient_info_id3)
                 print("df",patient_info_id1)
@@ -422,14 +422,17 @@ def patient_treatment(request):
         day = x.strftime("%A")
         d_uid = request.POST['d-uid']
         p_caseno = request.POST['p-caseno']
-        p_number = request.POST['p-number']
-        p_name = request.POST['p-first-name']
+        p_unique_id = request.POST['p-unique-id']
         p_gender = request.POST['p-gender']
         p_age = request.POST['p-age']
+        p_city = request.POST['p-city']
+        p_blood = request.POST['p-bloodgrp']
+        p_state = request.POST['p-state']
 
-        object1 = Patient_Register1.objects.get(p_number = p_number)
-        p_uid = object1.pk
-        request.session['p_uid'] = p_uid
+        print(p_unique_id)
+        #object1 = Patient_Register1.objects.get(p_unique_id = p_unique_id)
+        #p_id = object1.pk
+        #request.session['p_id'] = p_id
         request.session['p_caseno'] = p_caseno
        
         object2 = Patient_Treatment()
@@ -437,15 +440,17 @@ def patient_treatment(request):
         object2.t_day =day
         object2.t_time = time
         object2.d_uid = d_uid
-        object2.p_uid = p_uid
+        object2.p_unique_id = p_unique_id
         object2.p_caseno = p_caseno
-        object2.p_name = p_name
-        object2.p_number = p_number
+        object2.p_bloodgrp = p_blood
+        object2.p_city = p_city
+        object2.p_state = p_state
         object2.p_age = p_age
         object2.p_gender = p_gender
+        
         object2.save()
         context_treatment = {
-          'p_uid' : object2.p_uid,
+          'p_unique_id' : object2.p_unique_id,
            'p_caseno': object2.p_caseno
         }
         print("Done")
@@ -456,7 +461,7 @@ def patient_treatment(request):
 def patient_prescription(request):
     if request.method == 'POST':
         d_uid = request.session['doctor_id']
-        p_uid = request.POST['p-uid']
+        p_unique_id = request.POST['p-unique-id']
         p_caseno = request.POST['p-caseno']
         p_infection = request.POST['p-infection']
        
@@ -480,7 +485,7 @@ def patient_prescription(request):
 
         object1 = Patient_Treatment_Diagnosis()
         object1.d_uid = d_uid
-        object1.p_uid = p_uid
+        object1.p_unique_id = p_unique_id
         object1.p_caseno = p_caseno
         object1.p_infection = p_infection
         object1.p_symptoms = p_symptoms
@@ -491,7 +496,7 @@ def patient_prescription(request):
 
         for i in range(7,len(l_data)-2,5):
             object2 = Patient_Treatment_Medicines()
-            object2.p_uid = p_uid
+            object2.p_unique_id = p_unique_id
             object2.p_caseno = p_caseno
             object2.p_medicine = l_data[i].strip()
             object2.p_med_duration = int(l_data[i+1].strip())
@@ -556,9 +561,69 @@ def logout1_admin(request):
     return render (request,"login_admin_new.html")    
     
 def add_patient_new(request):
-    pass
+    p_gender = request.POST['p-gender1']
+    p_age = request.POST['p-age']
+    p_bloodgrp = request.POST['p-blood']
+    p_state = request.POST['p-state']
+    p_city = request.POST['p-city']
+    p_uid = request.POST['p-uid']
+
+    new_patient = Patient_Register1(p_gender = p_gender, p_age = p_age, p_bloodgrp = p_bloodgrp, p_state = p_state,p_city = p_city, p_unique_id = p_uid)
+    new_patient.save()
+    text1 = "Patient Registered"
+    data = {
+        "msg" : text1,
+        "p_gender":p_gender,
+        "p_age":p_age,
+        "p_bloodgrp":p_bloodgrp,
+        "p_city":p_city,
+        "p_state":p_state,
+        "p_uid":p_uid
+    }
+    return render(request,"add_patient_2.html",data)
+
+
+
 def add_patient_old(request):
-    pass
+    p_uid = request.POST['p-unique2']
+    print(p_uid)
+    old_patient = Patient_Register1.objects.get(p_unique_id = p_uid)
+    patient_history1 = Patient_Treatment_Diagnosis.objects.filter(p_unique_id = p_uid).only('p_caseno', 'p_symptoms','d_uid').order_by('id')
+    print(patient_history1)
+    p_appointment1 = []
+    p_appointment2 = []
+    p_appointment3 = []
+    for i in patient_history1:
+        p_appointment1.append(i.d_uid)
+        p_appointment2.append(i.p_caseno)
+        p_appointment3.append(i.p_symptoms)
+            
+    print(p_appointment1)    
+    print(p_appointment2)
+    print(p_appointment3)
+    
+    patient_history2 = Patient_Treatment.objects.filter(p_unique_id = p_uid, d_uid__in = p_appointment1).only('t_date').order_by('id')
+    p_appointment2 = []
+    for i in patient_history2:
+        p_appointment2.append(i.t_date)
+            
+    print(p_appointment2)
+    main3 = zip(patient_history1,patient_history2)
+    data = {
+        "p_gender":old_patient.p_gender,
+        "p_age":old_patient.p_age,
+        "p_bloodgrp":old_patient.p_bloodgrp,
+        "p_city":old_patient.p_city,
+        "p_state":old_patient.p_state,
+        "p_uid":old_patient.p_unique_id,
+        'main3': main3,
+    
+    }
+    return render(request,"add_patient_2.html",data)
+       
+
+
+
 
 
 

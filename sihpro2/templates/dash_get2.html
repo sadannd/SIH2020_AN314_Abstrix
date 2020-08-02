@@ -2,51 +2,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard2</title>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico'%}">
+    <title>Abstrix - Dashboard 2</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style2.css'%}">
+    <!--link rel="stylesheet" type="text/css" href="{% static 'assets/css/admin.css'%}"-->
+    
+    
 </head>
+
 <body>
-    <div class = "container">
-        <div class ='col-sm-12' url-endpoint='{url "fun1"}'>
-
-       
-
-        <div class="row">
-            <div class="col-sm-12 text-center" style="position: relative; height: 400px;">
-                Overview
-                <canvas id="myChart1" width="20" height="20"></canvas>
+    <div class="main-wrapper">
+        <div class="header">
+			<div class="header-left">
+				<a href="admin_dashboard_new.html" class="logo">
+					<img src="{%static 'assets/img/logo/abstrix_wobg.png'%}" height  ="35" alt=""> <span>Abstrix</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                        <span class="user-img">
+							<img class="rounded-circle" src="{%static 'assets/img/user.jpg'%}" width="24" alt="Admin">
+							<span class="status online"></span>
+						</span>
+						<span>{{aname}}</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="profile.html">My Profile</a>
+						<a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+						<a class="dropdown-item" href="settings.html">Settings</a>
+						<a class="dropdown-item" href="logout1_admin">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <a class="dropdown-item" href="logout1_admin">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li class="active">
+                            <a href="admin_dashboard_new.html"><i class="fa fa-dashboard"></i> <span>Overall</span></a>
+                        </li>
+						
+                        <li>
+                            <a href="dash1"><i class="fa fa-wheelchair"></i> <span>Patients Dashboard</span></a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div class="row text-center justify-content-center">
-            
-            <div class="col-sm-3" style="position: relative; height: 600px !important; width:800px !important;">
-                Maharashtra
-                <div>
-                    <canvas id="myChart2"></canvas>
-                </div>
-            </div>
-            <div class="col-sm-3" style="position: relative; height: 600px !important; width:800px !important;">
-                Karnataka
-                <div>
-                    <canvas id="myChart3"></canvas>
+        <div class="page-wrapper">
 
+            <div class = "container">
+                <div class ='col-sm-12' url-endpoint='{url "fun1"}'>
+        
+               
+        
+                <div class="row" style="margin-top: 2rem !important;">
+                    <div class="col-sm-12 text-center" style="height: 35vh;">
+                        <h3>Overview</h3>
+                        <canvas id="myChart1" width="20" height="20"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3" style="position: relative; height: 600px !important; width:800px !important;">
-                Gujarat
-                <div>
-                    <canvas id="myChart4"></canvas>
+        
+                <div class="row" style="margin-top: 2rem !important;">
+                    <div class="col-sm-3">
+                    <form action="location1" method="POST">
+                        {% csrf_token %}
+                        <div class="md-form my-3">
+                            <label for="select-gender">Location</label>
+                            <select name="location" onchange="mychart1_func(this.options[this.selectedIndex].text)" class="form-control" id="location" required>
+                            <option value="1">Maharashtra</option>
+                            <option value="2">Karnataka</option>
+                            <option value="3">Gujarat</option>
+                            </select>
+                        </div>
+                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-    </div>
-    </div>
+                <div class="row text-center justify-content-center" style="margin-bottom: 2rem;">
+                    
+                    <div class="col-sm-3" style="width:30vw !important; height: 35vh !important;">
+                        <h4>Maharashtra</h4>
+                        <div>
+                            <canvas id="myChart2" width="640" height="250"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" style="width:30vw !important; height: 35vh !important;">
+                        <h4>Karnataka</h4>
+                        <div>
+                            <canvas id="myChart3" width="640" height="250"></canvas>
+        
+                        </div>
+                    </div>
+                    <div class="col-sm-3" style="width:30vw !important; height: 35vh !important;">
+                        <h4>Gujarat</h4>
+                        <div>
+                            <canvas id="myChart4" width="640" height="250"></canvas>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+            </div>
+
+    
             
             
             
@@ -78,8 +161,21 @@
         
     </div-->
 
+
+</div>
+        
+        
+        
+        
+<div class="sidebar-overlay" data-reff=""></div>
+
+
     <script>
         var endpoint = 'fun1'
+
+        const Maharashtra = [ 10, 20, 30, 40];
+        const Karnataka = [100, 200, 300, 400, 500]
+        const Gujarat = [50, 100, 200]
         
         var count1 = []
         var label1 = []
@@ -130,23 +226,26 @@
             }
         })
     
-        function mychart1_func(){
+        function mychart1_func(datacount){
+            console.log(datacount)
             var ctx = document.getElementById('myChart1').getContext('2d');
-         
+            ctx.clearRect(0, 0, 640, 250);
+
+            ctx.height = 1;
                 var myChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
                         labels:label1,
                         datasets: [{
                             label: 'count',
-                            data: count1,
+                            data: Maharashtra,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
                             ],
                             borderColor: [
                                 'rgba(255, 99, 132, 1)',
@@ -161,13 +260,17 @@
                     },
                     options: {
                         maintainAspectRatio: false,
+                        responsive: true
                     }
                    
                 });
+
+                console.log(myChart.data.datasets)
+                myChart.update();
         }
         function mychart2_func(){
             var ctx = document.getElementById('myChart2').getContext('2d');
-        
+            ctx.width = 1;
          
                 var myChart = new Chart(ctx, {
                     type: 'bar',
@@ -177,12 +280,12 @@
                             label: 'count',
                             data: count2,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
                             ],
                             borderColor: [
                                 'rgba(255, 99, 132, 1)',
@@ -200,10 +303,15 @@
                     }
                    
                 });
+
+
+               
         }
+
+        
         function mychart3_func(){
             var ctx = document.getElementById('myChart3').getContext('2d');
-        
+            ctx.width = 1;
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -212,12 +320,12 @@
                             label: 'count',
                             data: count3,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
                             ],
                             borderColor: [
                                 'rgba(255, 99, 132, 1)',
@@ -238,7 +346,7 @@
         }
         function mychart4_func(){
             var ctx = document.getElementById('myChart4').getContext('2d');
-           
+            ctx.width = 1;
 
                 var myChart = new Chart(ctx, {
                     type: 'bar',
@@ -248,12 +356,12 @@
                             label: 'count',
                             data: count4,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
                             ],
                             borderColor: [
                                 'rgba(255, 99, 132, 1)',
@@ -273,6 +381,9 @@
                 });
         }
        
+        
+
+
     </script> 
     
     

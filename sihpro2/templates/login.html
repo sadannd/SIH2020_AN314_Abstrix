@@ -10,20 +10,31 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
 
-	<!-- CSS here -->
+  <!-- CSS here -->
 	<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"> 
 	<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/gijgo.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/animated-headline.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/gijgo.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/animated-headline.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/magnific-popup.cs' %}s">
 	<link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
 	<link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+  <script type="text/javascript">
+    var onloadCallback = function() {
+      console.log("Hello there!");
+      grecaptcha.render('verifyme', {
+        'sitekey' : '6LfefLkZAAAAAP7W0tQ-_098xAW2UcfWZrXvSRQc'
+      });
+    };
+
+  </script>
     
 </head>
 <body>
@@ -84,11 +95,17 @@
 </header>
 <main>
     <!--? Hero Start -->
-    <div class="card mx-auto">
-    <aside class="col-sm-7 mx-auto col-md-5 col-lg-4">
-        <div class="card mx-auto border-0">
-            <div class="card-header border-bottom-0 bg-transparent">
-                <ul class="nav nav-tabs justify-content-center pt-4" id="pills-tab" role="tablist">
+    <div class="card border-0 mx-auto my-5">
+      <aside class="col-sm-8 mx-auto ">
+        <div class="row justify-content-center align-items-start">
+          <div class="col-sm-6">
+            <div class="card mx-auto border-0">
+              <div class="card-header border-bottom-0 bg-transparent">
+                <div class="text-center mt-2">
+                  <h1>WELCOME TO ABSTRIX</h1>
+                </div>
+  
+      <ul class="nav nav-tabs justify-content-center mt-3" id="pills-tab" role="tablist">        
                   <li class="nav-item">
                     <a class="nav-link active text-primary" id="pills-login-tab" data-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login"
                       aria-selected="true">I am a Patient</a>
@@ -109,27 +126,13 @@
             <div class="form-group">
               <input type="number" name="contact-number" class="form-control" id="contact-number" placeholder="Mobile Number" required autofocus>
             </div>
-
-            <div class="form-group">
-              <input type="password" name="password" class="form-control" id="password" id="password" placeholder="Password" required>
+            <div class="form-group text-center justify-content-center">
+              <div id="verifyme"></div>
             </div>
 
-            <div class="custom-control custom-checkbox">
-              <input class="custom-control-input" id="customCheck1" checked="" type="checkbox">
-              <label class="custom-control-label" for="customCheck1">Remember me</label>
-            </div>
-
+            
             <div class="text-center pt-4">
               <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-
-            <div class="text-center pt-2">
-              <a class="btn-link text-primary" href="#">Forgot Your Password?</a>
-            </div>
-            <br>
-            <br>
-            <div class="text-center pt-2">
-              <a class="btn-link text-primary" href="signup">Don't have an account??</a>
             </div>
           </form>
         </div>
@@ -155,19 +158,22 @@
             </div>
 
             <div class="text-center pt-2">
-              <a class="btn-link text-primary" href="#">Forgot Your Password?</a>
-            </div>
-            <br>
-            <br>
-            <div class="text-center pt-2">
-              <a class="btn-link text-primary" href="signup">Don't have an Account??</a>
+              <a class="text-primary" href="signup">Don't have an Account??</a>
             </div>
           </form>
         </div>
       </div>
     </div>
         </div>
-    </aside>
+      </div>
+      <div class="col-sm-6 my-4 d-none d-lg-block">
+        <div class="svgholder" style="margin-left: 6rem;">
+          <img src="../static/assets/img/medicine_svg.svg" height="300" alt="login">
+        </div>
+      </div>
+    </div>
+  
+  </aside>
 </div>
     </main>
     
@@ -211,5 +217,10 @@
     <!-- Jquery Plugins, main Jquery -->	
     <script src="{% static './assets/js/plugins.js' %}"></script>
     <script src="{% static './assets/js/main.js' %}"></script>
+   
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+    </script> 
     </body>
 </html>

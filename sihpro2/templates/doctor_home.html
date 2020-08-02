@@ -195,109 +195,161 @@
                                         </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="add_patient_new" method="POST">
-                                                         {%csrf_token%} 
-                                                        <div class="md-form my-3">
-                                                            <label for="inputfirstname">Full Name</label>
-                                                          <input type="text" name="inputfirstname" class="form-control" id="inputfirstname" placeholder="First Name" required autofocus>
-                                                        </div>
+                                        <form action="add_patient_new" method="POST">
+                                                         {%csrf_token%}
                                                   
                                                    
-                                                        <div class="md-form my-3">
+                                                         <div class="form-group">
                                                             <label for="select-gender">Gender</label>
-                                                            <select name="select-gender" class="form-control" id="select-gender" required>
+                                                            <select name="p-gender1" class="form-control" id="p-gender1" required>
                                                               <option value="Choice 1">Select any one</option>
-                                                              <option value="Choice 2">Male</option>
-                                                              <option value="Choice 3">Female</option>
-                                                              <option value="Choice 4">Other</option>
+                                                              <option value="Male">Male</option>
+                                                              <option value="Female">Female</option>
+                                                              <option value="Other">Other</option>
                                                             </select>
-                                                        </div>
+                                                         </div>
                                                    
                                                
                                                 <div class="md-form my-3">
                                                     <label for="inputAge">Age (in years)</label>
-                                                    <input type="text" class="form-control" id="inputAge" placeholder="Enter numeric value only" required>
+                                                    <input type="text" class="form-control" name = "p-age" id="inputAge" placeholder="Enter numeric value only" required>
                                                   </div>
-                                                <div class="md-form my-3">
-                                                    <label for="inputContact">Contact No.</label>
-                                                  <input type="text" name="inputContact" class="form-control" id="inputContact" placeholder="Contact No." required autofocus>
+
+                                                  <div class="form-group">
+                                                    <label for="inputBlood">Blood Group</label>
+                                                    <select name="p-blood" class="form-control" id="p-blood">
+                                                    <option value="Choice 1">Select any one</option>
+                                                    <option value="A+">A+</option>
+                                                    <option value="A-">A-</option>
+                                                    <option value="B+">B+</option>
+                                                    <option value="B-">B-</option>
+                                                    <option value="O+">O+</option>
+                                                    <option value="O-">O-</option>
+                                                    <option value="AB+">AB+</option>
+                                                    <option value="AB-">AB-</option>
+                                                    </select>
                                                 </div>
-                                                
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        
-                                        </div>
-                                    </form>
+                                                <div class="form-group">
+                                                    <label for="inputState">State</label>
+                                                    <select name="p-state" class="form-control" id="p-state">
+                                                      <option value="Choice 1">Select any one</option>
+                                                      <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                      <option value="Assam">Assam</option>
+                                                      <option value="Bihar">Bihar</option>
+                                                      <option value="Chhattisgarh">Chhattisgarh</option>
+                                                      <option value="Goa">Goa</option>
+                                                      <option value="Gujarat">Gujarat</option>
+                                                      <option value="Haryana">Haryana</option>
+                                                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                      <option value="Jharkhand">Jharkhand</option>
+                                                      <option value="Karnataka">Karnataka</option>
+                                                      <option value="Kerala">Kerala</option>
+                                                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                      <option value="Maharashtra">Maharashtra</option>
+                                                      <option value="Manipur">Manipur</option>
+                                                      <option value="Meghalaya">Meghalaya</option>
+                                                      <option value="Mizoram">Mizoram</option>
+                                                      <option value="Nagaland">Nagaland</option>
+                                                      <option value="Odisha">Odisha</option>
+                                                      <option value="Punjab">Punjab</option>
+                                                      <option value="Rajasthan">Rajasthan</option>
+                                                      <option value="Sikkim">Sikkim</option>
+                                                      <option value="Tamil Nadu">Tamil Nadu</option>
+                                                      <option value="Telangana">Telangana</option>
+                                                      <option value="Tripura">Tripura</option>
+                                                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                      <option value="Uttarakhand">Uttarakhand</option>
+                                                      <option value="West Bengal">West Bengal</option>
+                                                      <option value="Other">Other</option>
+                                                    </select>
+                                                 </div>
+                                                 <div class="form-row">
+                                                    <div class="form-group col-sm-12">
+                                                      <label for="inputCity">City</label>
+                                                      <input type="text" class="form-control" name ="p-city" id="p-city" placeholder="Enter City" required> 
+                                                    </div>
+                                                 </div>   
+                                                 <div class="form-group">
+                                                     <label for="inputUid">UID</label>
+                                                 </div>
+                                                 <div class="form-group row">
+                                                    <div class="col-sm-8">
+                                                        <input type="text" name="p-uid" class="form-control" id="p-uid" placeholder="Generate UID" required autofocus>
+                                                    </div> 
+
+                                                    <div class="col-sm-2">
+                                                        <button name="generate_btn" id ="generate_btn" class="btn btn-primary" onclick="uid_fun()">Generate</button>
+                                                    </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
                                     </div>
                                 </div>
+                                                      
+                                                 
+
+                                                
                 <!-- Modal -->
                 <div class="modal fade" id="oldPatient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Patient</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Patient</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body text-center">
-                            <form action="add_patient_old" method="POST">
-                             {%csrf_token%}   
-                                <div class="md-form my-3">
-                                    <label for="inputfirstname">Full Name</label>
-                                  <input type="text" name="inputfirstname" class="form-control" id="inputfirstname" placeholder="First Name" required autofocus>
-                                </div>
-                          
-                           
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                            </button>
+                             </div>
+                             <div class="modal-body text-center">
+                                <form action="add_patient_old" method="POST">
+                                     {%csrf_token%}   
+                                     <div class="md-form my-3">
+                                        <label for="inputfirstname">User Identification Number</label>
+                                        <input type="text" name="p-unique2" class="form-control" id="p-unique2" placeholder="User ID" required autofocus>
+                                        </div>
+                    
+                                     <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                 
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
                         </div>
                     </div>
-                </div>
+                </div>    
 				<div class="row">
 					<div class="col-md-12">
 						<div class="table-responsive">
 							<table class="table table-border table-striped custom-table datatable mb-0">
 								<thead>
 									<tr>
-										<th>Name</th>
+										<th>UID</th>
 										<th>Age</th>
                                         <th>Gender</th>
 										<th>Infection</th>
 										<th>Diagnosis</th>
-                                        <th>Phone</th>
+                                        
 										
-										<th class="text-right">Action</th>
+										
 									</tr>
 								</thead>
 								<tbody>
                                     {% for i,j in main2 %}
 									<tr>
                                         
-										<td><img width="35" height="35" src="{% static 'assets/img/user.jpg'%}" class="rounded-circle m-r-5" alt="">{{i.p_name}}</td>
+										<td><img width="35" height="35" src="{% static 'assets/img/user.jpg'%}" class="rounded-circle m-r-5" alt="">{{i.p_unique_id}}</td>
 										<td>{{i.p_age}}</td>
                                         <td>{{i.p_gender}}</td>
 										<td>{{j.p_infection}}</td>
 										<td>{{j.p_diagnosis}}</td>
-										
-										<td>{{i.p_number}}</td>
-										
-										<td class="text-right">
-											<div class="dropdown dropdown-action">
-												<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="edit-patient.html"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_patient"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-												</div>
-											</div>
-                                        </td>
+				
                                         
                                     </tr>
                                     {% endfor %}
@@ -339,5 +391,15 @@
     <script src="{% static 'assets/js/moment.min.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap-datetimepicker.min.js' %}"></script>
     <script src="{% static 'assets/js/app.js' %}"></script>
+    <script type="text/javascript">
+        
+        function uid_fun(){
+            document.getElementById('p-uid').value = Math.floor(Math.random() * 100000);
+            document.getElementById('generate_btn').disabled = true;
+            
+
+        }
+
+    </script>
 </body>
 </html>
