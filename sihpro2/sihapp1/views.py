@@ -35,14 +35,10 @@ def about(request):
 def blog(request):
     return render(request,'blog.html')
 
-def blog_details(request):
-    return render(request,'blog_details.html')
-
 def contact(request):
     return render(request,'contact.html')
 
-def elements(request):
-    return render(request,'elements.html') 
+
 
 def home(request):
     return render(request,'index.html') 
@@ -104,7 +100,6 @@ def register_doctor(request):
     register_d.d_specialization = 0
     register_d.d_email = 0
     register_d.d_qualification = 0
-    register_d.d_aadhar = 0
     register_d.d_img = 0
     register_d.d_gender = 0
     register_d.d_state = 0
@@ -171,7 +166,7 @@ def register_info_doctor(request):
         d_last_name = request.POST['d-last-name']
         d_number = request.POST['d-contact-number']
         d_email = request.POST['d-email']
-        d_aadhar = request.POST['d-aadhaar']
+        
         d_gender = request.POST['d-gender']
         d_age = request.POST['d-age']
         d_regNo = request.POST['d-RegNo']
@@ -189,7 +184,7 @@ def register_info_doctor(request):
 
             register_info_d = Doctor_Register1.objects.get(d_number = d_number) 
             register_info_d.d_email = d_email
-            register_info_d.d_aadhar = d_aadhar
+            
             register_info_d.d_gender = d_gender
             register_info_d.d_age = d_age
             register_info_d.d_license_number = d_regNo
@@ -513,7 +508,7 @@ def patient_prescription(request):
 
 def sih_useradmin(request):
 
-    return render(request,"login_admin.html")
+    return render(request,"login_admin_new2.html")
 
 def sih_admin_signup(request):
     if request.method == 'POST':
@@ -532,7 +527,7 @@ def sih_admin_signup(request):
 
         register_a.save()
 
-    return render(request,"login_admin.html")
+    return render(request,"login_admin_new.html")
 
 def sih_admin_login(request):
 
@@ -541,7 +536,11 @@ def sih_admin_login(request):
         a_password = request.POST['a-password']
 
         if Sih_abstrix_admin.objects.filter(a_number = a_number, a_password1 = a_password).count()>0:
-            return render(request,"admin_dashboard.html")
+            object1 = Sih_abstrix_admin.objects.get(a_number = a_number)
+            a_name = object1.a_first_name
+
+
+            return render(request,"dash_get2.html",{"aname":a_name})
         else: 
             print("Invalid Data")  
             return redirect('sih_useradmin')  
@@ -553,10 +552,13 @@ def close_case(request):
 
     return render(request,'doctor_home.html')
         
+def logout1_admin(request):
+    return render (request,"login_admin_new.html")    
     
-    
-
-
+def add_patient_new(request):
+    pass
+def add_patient_old(request):
+    pass
 
 
 

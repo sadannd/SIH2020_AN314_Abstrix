@@ -21,6 +21,9 @@
             <div class="row">
                 <canvas id="myChart2" width="20" height="20"></canvas>
             </div>
+            <div class="row">
+                <canvas id="myChart3" width="20" height="20"></canvas>
+            </div>
         </div>
     </div>
 
@@ -33,11 +36,13 @@
 
     var c1 = document.getElementById("myChart");
     var c2 = document.getElementById("myChart2");
+    var c3 = document.getElementById("myChart3");
     function clearCanvas(obj) {
         obj.height = 5;
     }
     clearCanvas(c1)
     clearCanvas(c2)
+    clearCanvas(c3)
 
     $.ajax({
         method: "GET",

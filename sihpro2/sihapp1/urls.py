@@ -34,6 +34,17 @@ urlpatterns = [
   path("sih_admin_login",views.sih_admin_login, name ="sih_admin_login"),
   path("sih_admin_signup",views.sih_admin_signup, name ="sih_admin_signup"),
   path("close_case",views.close_case, name ="close_case"),
+  path("logout1_admin",views.logout1_admin, name = "logout1_admin"),
+  path("add_patient_new",views.add_patient_new, name = "add_patient_new"),
+  path("add_patient_old",views.add_patient_old, name="add_patient_old"),
+  path("show_analysis", views2.show_analysis, name = "show_analysis"),
+  
+  path("dash2",views2.dash2, name="dash2"),
+  path("dash2_data1",views2.dash2_data1,name = "dash2_data1"),
+  path("dash2_data2",views2.dash2_data2,name = "dash2_data2"),
+  path("dash2_data3",views2.dash2_data3,name = "dash2_data3"),
+  path("dash2_data4",views2.dash2_data4,name = "dash2_data4"),
+  path("fun1", views2.fun1, name = "fun1"),
   
 
   path("logout1",views.logout1, name="logout1"),

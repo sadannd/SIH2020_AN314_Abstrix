@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard2</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+</head>
+<body>
+    <div class = "container">
+        <div class ='col-sm-12' url-endpoint='{url "fun1"}'>
+
+       
+
+        <div class="row">
+            <div class="col-sm-12 text-center" style="position: relative; height: 400px;">
+                Overview
+                <canvas id="myChart1" width="20" height="20"></canvas>
+            </div>
+        </div>
+
+        <div class="row text-center justify-content-center">
+            
+            <div class="col-sm-3" style="position: relative; height: 600px !important; width:800px !important;">
+                Maharashtra
+                <div>
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+            <div class="col-sm-3" style="position: relative; height: 600px !important; width:800px !important;">
+                Karnataka
+                <div>
+                    <canvas id="myChart3"></canvas>
+
+                </div>
+            </div>
+            <div class="col-sm-3" style="position: relative; height: 600px !important; width:800px !important;">
+                Gujarat
+                <div>
+                    <canvas id="myChart4"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+            
+            
+            
+         
+        <!--form action="location1" method="POST">
+            {% csrf_token %}
+                <div class="md-form my-3">
+                    <label for="select-gender">Location</label>
+                    <select name="location" onchange = "onlocationChange(this.value)"class="form-control" id="location" required>
+                    <option value="1">Maharashtra</option>
+                    <option value="2">Karnataka</option>
+                    <option value="3">Gujarat</option>
+                    </select>
+               </div>
+
+               <div class="text-center pt-4">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+
+        </form>  
+        <div class ='col-sm-12' url-endpoint='{url "location1"}'>
+            
+            <div class="row">
+                <canvas id="myChart2" width="20" height="20"></canvas>
+            </div>
+            
+            
+        </div>      
+        
+    </div-->
+
+    <script>
+        var endpoint = 'fun1'
+        
+        var count1 = []
+        var label1 = []
+        var count2 = []
+        var label2 = []
+        var count3 = []
+        var label3 = []
+        var count4 = []
+        var label4 = []
+
+    
+        var c1 = document.getElementById("myChart1");
+        var c2 = document.getElementById("myChart2");
+        var c3 = document.getElementById("myChart3");
+        var c4 = document.getElementById("mychart4");
+        
+        //function clearCanvas(obj) {
+        //    obj.height = 5;
+        //}
+
+        //clearCanvas(c1)
+        //clearCanvas(c2)
+        //clearCanvas(c3)
+        //clearCanvas(c4)
+    
+        $.ajax({
+            method: "GET",
+            url:endpoint,
+            success: function(data1){
+                label1 = data1.labelsx
+                count1 = data1.values1
+                count2 = data1.values2
+                count3 = data1.values3
+                count4 = data1.values4
+                
+                
+                mychart1_func()
+                mychart2_func()
+                mychart3_func()
+                mychart4_func()
+                
+    
+                
+            },
+            error: function(error_data){
+                console.log("error")
+                console.log(error_data)
+            }
+        })
+    
+        function mychart1_func(){
+            var ctx = document.getElementById('myChart1').getContext('2d');
+         
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: count1,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                    }
+                   
+                });
+        }
+        function mychart2_func(){
+            var ctx = document.getElementById('myChart2').getContext('2d');
+        
+         
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: count2,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                    }
+                   
+                });
+        }
+        function mychart3_func(){
+            var ctx = document.getElementById('myChart3').getContext('2d');
+        
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: count3,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                    }
+                   
+                });
+        }
+        function mychart4_func(){
+            var ctx = document.getElementById('myChart4').getContext('2d');
+           
+
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: count4,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                    }
+                   
+                });
+        }
+       
+    </script> 
+    
+    
+    
+    <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script> 
+    
+    </body>
+
+
+
+
+
+
+</html>
