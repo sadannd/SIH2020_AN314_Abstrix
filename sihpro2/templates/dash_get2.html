@@ -93,7 +93,7 @@
                         {% csrf_token %}
                         <div class="md-form my-3">
                             <label for="select-gender">Location</label>
-                            <select name="location" onchange="mychart1_func(this.options[this.selectedIndex].text)" class="form-control" id="location" required>
+                            <select name="location" class="form-control" id="id_state" required>
                             <option value="1">Maharashtra</option>
                             <option value="2">Karnataka</option>
                             <option value="3">Gujarat</option>
@@ -210,7 +210,7 @@
                 count2 = data1.values2
                 count3 = data1.values3
                 count4 = data1.values4
-                
+            
                 
                 mychart1_func()
                 mychart2_func()
@@ -226,8 +226,8 @@
             }
         })
     
-        function mychart1_func(datacount){
-            console.log(datacount)
+        function mychart1_func(data){
+            console.log(data)
             var ctx = document.getElementById('myChart1').getContext('2d');
             ctx.clearRect(0, 0, 640, 250);
 
@@ -238,7 +238,7 @@
                         labels:label1,
                         datasets: [{
                             label: 'count',
-                            data: Maharashtra,
+                            data: data,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 1)',
                                 'rgba(54, 162, 235, 1)',
@@ -265,7 +265,6 @@
                    
                 });
 
-                console.log(myChart.data.datasets)
                 myChart.update();
         }
         function mychart2_func(){
@@ -381,9 +380,27 @@
                 });
         }
        
-        
+        $("#id_state").change(function () {
 
+            var stateId = $(this).val();  // get the selected state ID from the HTML input
+      
+            $.ajax({                       // initialize an AJAX request
+                url:endpoint,
+                data: {
+                    'state': stateId       // add the state id to the GET parameters
+                  },
+                success: function(data){
+           
+                
+                    
+                    mychart1_func(data);
+                    
+                    
+                }
+      
+          });
 
+        })
     </script> 
     
     

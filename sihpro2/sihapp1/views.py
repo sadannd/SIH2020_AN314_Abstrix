@@ -205,69 +205,42 @@ def register_info_doctor(request):
    
 
 def login_patient(request):
-    p_number1 = None
-    if request.method == 'POST':
-        p_number1 = request.POST['contact-number']
-        p_password = request.POST['password']
-        print(p_number1, p_password)
 
-        if Patient_Register1.objects.filter(p_number = p_number1, p_password1 = p_password). count() > 0:
+    p_uid = request.POST['p-unique-id3']
+    print(p_uid)
+    old_patient = Patient_Register1.objects.get(p_unique_id = p_uid)
+    patient_history1 = Patient_Treatment_Diagnosis.objects.filter(p_unique_id = p_uid).only('p_caseno', 'p_symptoms','d_uid').order_by('id')
+    print(patient_history1)
+    p_appointment1 = []
+    p_appointment2 = []
+    p_appointment3 = []
+    for i in patient_history1:
+        p_appointment1.append(i.d_uid)
+        p_appointment2.append(i.p_caseno)
+        p_appointment3.append(i.p_symptoms)
             
-            num1 = request.session['patient_num'] = p_number1.strip()
-            object1 = Patient_Register1.objects.get(p_number = p_number1)
-            pid =request.session['patient_id'] = object1.pk
-            name = object1.p_first_name
-            #object1.p_first_name = "IAIAIA"
-            #object1.save()
-            print(name)
-            print(pid)
-            patient_history1 = Patient_Treatment_Diagnosis.objects.filter(p_uid = pid).only('p_caseno', 'p_symptoms','d_uid').order_by('id')
-            print(patient_history1)
-            p_appointment1 = []
-            p_appointment2 = []
-            p_appointment3 = []
-
-            for i in patient_history1:
-
-                p_appointment1.append(i.d_uid)
-                p_appointment2.append(i.p_caseno)
-                p_appointment3.append(i.p_symptoms)
+    print(p_appointment1)    
+    print(p_appointment2)
+    print(p_appointment3)
+    
+    patient_history2 = Patient_Treatment.objects.filter(p_unique_id = p_uid, d_uid__in = p_appointment1).only('t_date').order_by('id')
+    p_appointment2 = []
+    for i in patient_history2:
+        p_appointment2.append(i.t_date)
             
-            print(p_appointment1)    
-            print(p_appointment2)
-            print(p_appointment3)
-
-            patient_history2 = Patient_Treatment.objects.filter(p_uid = pid, d_uid__in = p_appointment1).only('t_date','t_time').order_by('id')
-            
-            p_appointment2date = []
-            p_appointment2time = []
-
-            for i in patient_history2:
-                p_appointment2date.append(i.t_date)
-                p_appointment2time.append(i.t_time)
-
-
-                    
-            ##print(p_appointment2)
-
-            main4 = zip(patient_history1,patient_history2)
-            context = {'p_name':name,
-            'main4':main4
-            
-            }
-
-            #n1 = request.GET.get('button_value')
-            #print(n1)
-
-            return render(request, 'patient_home.html',context)
-        else:
-            print("Invalid Data")  
-            return redirect('login')   
-
-    else: 
-        #n1 = request.GET.get('button_value')
-        #print(n1)
-        return redirect('login') 
+    print(p_appointment2)
+    main4 = zip(patient_history1,patient_history2)
+    data = {
+        "p_gender":old_patient.p_gender,
+        "p_age":old_patient.p_age,
+        "p_bloodgrp":old_patient.p_bloodgrp,
+        "p_city":old_patient.p_city,
+        "p_state":old_patient.p_state,
+        "p_uid":old_patient.p_unique_id,
+        'main4': main4,
+    
+    }
+    return render(request,"patient_home.html",data)
 
 def login_doctor(request):
         d_number1 = None

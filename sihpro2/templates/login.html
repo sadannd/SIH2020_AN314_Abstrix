@@ -124,7 +124,7 @@
           <form action="login_patient" method="POST">
             {% csrf_token %}
             <div class="form-group">
-              <input type="number" name="contact-number" class="form-control" id="contact-number" placeholder="Mobile Number" required autofocus>
+              <input type="text" name="p-unique-id3" class="form-control" id="p-unique-id3" placeholder="Patient's UID" required autofocus>
             </div>
             <div class="form-group text-center justify-content-center">
               <div id="verifyme"></div>
