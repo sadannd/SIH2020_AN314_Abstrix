@@ -1,0 +1,130 @@
+body, header, a, li, ul, nav, .navbar, .card, .nav-link  {
+    background: transparent;
+    color: white;
+}
+
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.nav-tabs {
+    border: none;
+    border-radius: 0;
+}
+
+.btn {
+    background-color: white;
+    color: #363638;
+    border: none;
+    border-radius: 0;
+    font-weight: 700;
+}
+
+.btn:hover {
+    background-color: #585858;
+    color: white;
+    border: none;
+}
+
+.btn::before {
+    content: "";
+    overflow: hidden;
+    position: absolute;
+    background-color: #858587;
+    color: white;
+    border: none;
+}
+
+.text-primary {
+    color: white !important;
+}
+
+a.text-primary:focus, a.text-primary:hover {
+    color: #858587!important;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #858587;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #858587 !important;
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+}
+
+.form-control {
+    background-color: #363638;
+    color: white;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ffffff;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.8; /* Firefox */
+  }
+
+.form-control:focus {
+    color: white;
+    background-color: #363638;
+    outline: 0;
+    box-shadow: none;
+}
+html {
+    background-color: #363638;    
+}
+
+body {
+    background: transparent;
+    }
+
+.card {
+    height: 87vh;
+}
+
+#sidebar {
+    background-color: #585858 !important; 
+    
+}
+
+#sidebar li a {
+    color: white;
+}
+
+.sidebar-menu li.active a {
+    background-color: #363638;
+}
+
+.btn-primary.active:not(:disabled):not(.disabled), .btn-primary:active:not(:disabled):not(.disabled), .show > .btn-primary.dropdown-toggle {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.btn-primary.active:not(:disabled):not(.disabled), .btn-primary:active:not(:disabled):not(.disabled), .show > .btn-primary.dropdown-toggle {
+    background-color: white;
+    color: black;
+}
+
+.btn-primary.visited {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.btn-primary:focus, .btn-primary.active, .btn-primary:active, .open > .dropdown-toggle.btn-primary {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.modal-header, .modal-body, .modal-footer {
+    color: white;
+    background-color: #363638;
+}
