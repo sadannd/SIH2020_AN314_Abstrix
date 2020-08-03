@@ -164,6 +164,72 @@
                     </div>
                     
                 </div>
+
+                <div class="row justify-content-center align-items-center" style="margin-top: 3rem !important;">
+                    <div class="col-sm-3">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="md-form my-3">
+                            <label for="startYear">Start Year</label>
+                            <input type="text" name="startYear" placeholder="Start Year" class="form-control" id="startYear" required>
+                                                
+                        </div>
+                    </form>
+                    </div>
+                    <div class="col-sm-3">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="md-form my-3">
+                                <label for="endYear">End Year</label>
+                                <input type="text" name="endYear" placeholder="End Year" class="form-control" id="endYear" required>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="col-sm-1 mt-4">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="md-form my-3">
+                                    <button type="submit" class="btn btn-primary" id="submityear">Submit</button>
+                                </div>
+                            </form>
+                            </div>
+                </div>
+
+                <div class="row text-center justify-content-center mt-4" style="margin-bottom: 3rem;">
+                    
+                    <div class="col-sm-6" style="width:30vw !important; height: 35vh !important;">
+                        <h4>Chart6</h4>
+                        <div>
+                            <canvas id="myChart6" width="640" height="250"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="width:30vw !important; height: 35vh !important;">
+                        <h4>Chart7</h4>
+                        <div>
+                            <canvas id="myChart7" width="640" height="250"></canvas>
+        
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="row text-center justify-content-center mt-4" style="margin-bottom: 3rem;">
+                    
+                    <div class="col-sm-6" style="width:30vw !important; height: 35vh !important;">
+                        <h4>Chart8</h4>
+                        <div>
+                            <canvas id="myChart8" width="640" height="250"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-6" style="width:30vw !important; height: 35vh !important;">
+                        <h4>Chart9</h4>
+                        <div>
+                            <canvas id="myChart9" width="640" height="250"></canvas>
+        
+                        </div>
+                    </div>
+                    
+                </div>
         
             </div>
             </div>
@@ -291,6 +357,10 @@
 
                 mychart1_func();
                 mychart5_func();
+                mychart6_func();
+                mychart7_func();
+                mychart8_func();
+                mychart9_func();
  
             },
             error: function(error_data){
@@ -460,7 +530,7 @@
             var ctx = document.getElementById('myChart5').getContext('2d');
           
 
-            ctx.height = 1;
+                ctx.height = 1;
                 var myChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -496,7 +566,175 @@
 
                 myChart.update();
         }
+
+        function mychart6_func(temp2){
        
+            var ctx = document.getElementById('myChart6').getContext('2d');
+          
+
+            ctx.height = 1;
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: temp2,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true
+                    }
+                   
+                });
+
+                myChart.update();
+        }
+
+        function mychart7_func(temp3){
+       
+            var ctx = document.getElementById('myChart7').getContext('2d');
+          
+
+            ctx.height = 1;
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: temp3,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true
+                    }
+                   
+                });
+
+                myChart.update();
+        }
+
+        function mychart8_func(temp4){
+       
+            var ctx = document.getElementById('myChart8').getContext('2d');
+          
+
+            ctx.height = 1;
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: temp4,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true
+                    }
+                   
+                });
+
+                myChart.update();
+        }
+       
+        function mychart9_func(temp5){
+       
+            var ctx = document.getElementById('myChart9').getContext('2d');
+          
+
+            ctx.height = 1;
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: temp5,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true
+                    }
+                   
+                });
+
+                myChart.update();
+        }
+
         $("#id_state").change(function () {
         
             var count22 =[]
@@ -583,6 +821,40 @@
           });
 
         })
+
+        $('submityear').submit(function(e) {
+            e.preventDefault();
+        })
+
+
+        $('submityear').click(function() {
+            
+            var startYear = $('startYear').val();
+            var endYear = $('endYear').val();
+            console.log(startYear, endYear)
+
+            $.ajax({                       // initialize an AJAX request
+                url:endpoint,
+                data: {
+                    'startYear': startYear,
+                    'endYear': endYear,
+                    // add the state id to the GET parameters
+                  },
+                success: function(data1){
+                    console.log(data1)
+                    count66 = data1.startYear;
+                    count77 = data1.endYear;
+                    mychart6_func(count66);
+                    mychart7_func(count77);
+                    
+                    
+                }
+      
+          });
+
+        })
+
+
     </script> 
     
     
