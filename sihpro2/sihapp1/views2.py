@@ -70,11 +70,14 @@ def fun1(request, *args, **kwargs):
     ##reg5.fit([[dataset.a_Bacteria,dataset.a_Level,dataset.a_Year]],dataset.c_Cases)
     #print(reg5.predict([(1,3,2020)]))
     state = request.GET.get('state')
-    state_age = request.GET.get('state_age')
+    
+    
     state_gender = request.GET.get('state_gender')
     bnum1 = int(request.GET.get('bnum1'))
     byear2 = int(request.GET.get('byear2'))
+
     print(state)
+    print("Gender value",state_gender)
     print(bnum1, byear2)
     print(type(bnum1))
     
@@ -85,7 +88,7 @@ def fun1(request, *args, **kwargs):
     x2=[]
     x3=[]
     if state == "values1":
-        reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\General1.sav', 'rb'))
+        reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location1.sav', 'rb'))
         for level in range (1,5):       
             x1.append(reg4.predict([(2,level,2030)])[0])
 
@@ -128,17 +131,37 @@ def fun1(request, *args, **kwargs):
     #    x3.append(reg6.predict([(1,level,2030)])[0])
     
     #print(x3)
-    
+    if state_gender == "values1":
+        reg7 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\SIH2020_AN314_Abstrix\sihpro2\sihapp1\Gender.sav','rb'))
+        for level in range (1,5):       
+            x3.append(reg7.predict([(0,2,level,2030)])[0])
+        print(x3)
 
+    elif state_gender == "values2":
+        reg8 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\SIH2020_AN314_Abstrix\sihpro2\sihapp1\Gender.sav', 'rb'))
+        for level in range (1,5):       
+            x3.append(reg8.predict([(1,2,level,2030)])[0])
+
+        print(x3)
+    
+    #state_age = request.GET.get('state_age')
+    #state_age1 = int(state_age)
+    #reg9 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\SIH2020_AN314_Abstrix\sihpro2\sihapp1\Age.sav', 'rb'))
+    #for level in range (1,5):       
+    #    x2.append(reg9.predict([(state_age1,2,level,2050)])[0])
+    
+    #print("This is x2",x2)
 
     data1 = {
         "labelsx":labelsx,
         "values1":x,
         "values22":x1,
+        "values33":x3,
+        #"values44":x2,
         
 
     }
-    return JsonResponse(data1)
+    return JsonResponse(data1,safe=False)
     
 
 
@@ -157,7 +180,12 @@ def show_analysis(request, *args , **kwargs):
 
 
 def dash2_data1(request, *args, **kwargs):
-    return JsonResponse()
+    
+    reg8 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\SIH2020_AN314_Abstrix\sihpro2\sihapp1\Gender.sav', 'rb'))
+    val1 = reg8.predict([(1,2,1,2030)])[0]
+    print(val1)
+    return JsonResponse(val1,safe=False)
+
 
 def dash2_data2(request, *args, **kwargs):
     return JsonResponse()

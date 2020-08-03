@@ -113,11 +113,7 @@
                             {% csrf_token %}
                             <div class="md-form my-3">
                                 <label for="id_age">Age</label>
-                                <select name="age" class="form-control" id="id_age" required>
-                                <option value="values1">Below 16</option>
-                                <option value="values2">16-30</option>
-                                <option value="values3">Above 30</option>
-                                </select>
+                                <input type="number" name="age" class="form-control" id="age" placeholder="Age" required autofocus>
                             </div>
                         </form>
                         </div>
@@ -126,7 +122,7 @@
                                 {% csrf_token %}
                                 <div class="md-form my-3">
                                     <label for="id_gender">Gender</label>
-                                    <select name="gender" class="form-control" id="id_gender" required>
+                                    <select name="id_gender" class="form-control" id="id_gender" required>
                                     <option value="values1">Male</option>
                                     <option value="values2">Female</option>
                                     </select>
@@ -231,10 +227,10 @@
         //clearCanvas(c3)
         //clearCanvas(c4)
         var bname = $("#bname").text()
-        var b1 = " b1"
-        var b2 = " b2"
-        var b3 = " b3"
-        var b4 = " b4"
+        var b1 = "b1"
+        var b2 = "b2"
+        var b3 = "b3"
+        var b4 = "b4"
         console.log(typeof(bname))
         //var bname1 = 0
         function get_bnum(bname){
@@ -256,7 +252,7 @@
             return bname1
         } 
         
-        var bnum1 = get_bnum(bname)
+        var bnum1 = 0
 
         var byear = $("#byear").text()
         var byear2 = parseInt(byear)
@@ -276,9 +272,9 @@
             success: function(data1){
                 label1 = data1.labelsx
                 count1 = data1.values1
-                count2 = data1.values2
-                count3 = data1.values3
-                count4 = data1.values4
+                //count2 = data1.values2
+                //count3 = data1.values3
+                //count4 = data1.values4
 
                 mychart1_func();
  
@@ -471,47 +467,59 @@
 
         })
 
-        $("#id_age").change(function () {
+        $("#age").blur(function () {
            
         
-            var count33 =[]
-        
-            var stateId = $(this).val();  // get the selected state ID from the HTML input
+            var count44 = []
          
-            $.ajax({                       // initialize an AJAX request
-                url:endpoint,
-                data: {
-                    'state_age': stateId       // add the state id to the GET parameters
-                  },
-                success: function(data1){
-                    
-                    count33 = data1.values33
-                  
-                    mychart3_func(count33);
-                    
-                    
-                }
-      
-          });
+                console.log(this)
+                var stateId = $(this).val();  // get the selected state ID from the HTML input
+                console.log(stateId)
+                
+                $.ajax({                       // initialize an AJAX request
+                    url:endpoint,
+                    data: {
+                        'state_age': stateId,
+                        'bnum1': bnum1,
+                        'byear2': byear2,       // add the state id to the GET parameters
+                      },
+                    success: function(data1){
+                        
+                        count44 = data1.values44
+                      
+                        mychart3_func(count44);
+                        
+                        
+                    },
+                    error: function(error_data){
+                        console.log("error")
+                        console.log(error_data)
+                    }
 
-        })
+          
+              });
+            })
+
+      
 
         $("#id_gender").change(function () {
           
           
         
-            var count44 =[]
-            var stateId = $(this).val();  // get the selected state ID from the HTML input
-            
+            var count33 =[]
+            var genderId = $(this).val();  // get the selected state ID from the HTML input
+            console.log(genderId)
             $.ajax({                       // initialize an AJAX request
                 url:endpoint,
                 data: {
-                    'state_gender': stateId       // add the state id to the GET parameters
+                    'state_gender': genderId,
+                    'bnum1': bnum1,
+                    'byear2': byear2,     // add the state id to the GET parameters
                   },
                 success: function(data1){
-                  
-                    count44 = data1.values44
-                    mychart4_func(count44);
+                    console.log(data1)
+                    count33 = data1.values33
+                    mychart4_func(count33);
                     
                     
                 }
