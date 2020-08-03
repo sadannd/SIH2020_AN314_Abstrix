@@ -505,7 +505,7 @@ def sih_admin_signup(request):
 
         register_a.save()
 
-    return render(request,"login_admin_new.html")
+    return render(request,"login_admin_new2.html")
 
 def sih_admin_login(request):
 

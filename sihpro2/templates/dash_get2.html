@@ -94,7 +94,7 @@
                     </div>
                 </div>
         
-                <div class="row justify-content-center" style="margin-top: 2rem !important;">
+                <div class="row justify-content-center" style="margin-top: 3rem !important;">
                     <div class="col-sm-3">
                     <form action="location1" method="POST">
                         {% csrf_token %}
@@ -131,7 +131,7 @@
                             </div>
                 </div>
 
-                <div class="row text-center justify-content-center" style="margin-bottom: 2rem;">
+                <div class="row text-center justify-content-center" style="margin-bottom: 3rem;">
                     
                     <div class="col-sm-3" style="width:30vw !important; height: 35vh !important;">
                         <h4>Location-wise</h4>
@@ -152,6 +152,17 @@
                             <canvas id="myChart4" width="640" height="250"></canvas>
                         </div>
                     </div>
+                </div>
+
+                
+                <div class="row text-center justify-content-center mt-3" style="margin-bottom: 3rem;">
+                    <div class="col-sm-12" style="width:45vw !important; height: 35vh !important;">
+                        <h4>Efficiency</h4>
+                         <div>
+                            <canvas id="myChart5" width="560" height="250"></canvas>
+                        </div>
+                    </div>
+                    
                 </div>
         
             </div>
@@ -209,6 +220,7 @@
         var label3 = []
         var count4 = []
         var label4 = []
+        var count45= []
         
         
 
@@ -272,11 +284,13 @@
             success: function(data1){
                 label1 = data1.labelsx
                 count1 = data1.values1
+                count45 = data1.values44
                 //count2 = data1.values2
                 //count3 = data1.values3
                 //count4 = data1.values4
 
                 mychart1_func();
+                mychart5_func();
  
             },
             error: function(error_data){
@@ -440,6 +454,48 @@
                    
                 });
         }
+
+        function mychart5_func(){
+       
+            var ctx = document.getElementById('myChart5').getContext('2d');
+          
+
+            ctx.height = 1;
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:label1,
+                        datasets: [{
+                            label: 'count',
+                            data: count45,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0.25
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true
+                    }
+                   
+                });
+
+                myChart.update();
+        }
        
         $("#id_state").change(function () {
         
@@ -485,7 +541,7 @@
                       },
                     success: function(data1){
                         
-                        count44 = data1.values44
+                        count44 = data1.values1
                       
                         mychart3_func(count44);
                         
