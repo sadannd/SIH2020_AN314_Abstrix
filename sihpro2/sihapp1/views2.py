@@ -75,6 +75,7 @@ def fun1(request, *args, **kwargs):
     state_gender = request.GET.get('state_gender')
     bnum1 = int(request.GET.get('bnum1'))
     byear2 = int(request.GET.get('byear2'))
+    
 
     print(state)
     print("Gender value",state_gender)
@@ -88,6 +89,7 @@ def fun1(request, *args, **kwargs):
     x2=[]
     x3=[]
     x4=[]
+    
     if state == "values1":
         reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location1.sav', 'rb'))
         for level in range (1,5):       
@@ -158,6 +160,8 @@ def fun1(request, *args, **kwargs):
 
     print(x4)
 
+    
+
     data1 = {
         "labelsx":labelsx,
         "values1":x,
@@ -165,6 +169,7 @@ def fun1(request, *args, **kwargs):
         "values33":x3,
         "values43":x2,
         "values44":x4,
+        
         
 
     }
