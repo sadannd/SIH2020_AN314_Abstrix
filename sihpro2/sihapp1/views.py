@@ -516,9 +516,10 @@ def sih_admin_login(request):
         if Sih_abstrix_admin.objects.filter(a_number = a_number, a_password1 = a_password).count()>0:
             object1 = Sih_abstrix_admin.objects.get(a_number = a_number)
             a_name = object1.a_first_name
+            request.session['admin-name'] = a_name
 
 
-            return render(request,"dash_get2.html",{"aname":a_name})
+            return render(request,"admin_dashboard_new.html",{"aname":a_name})
         else: 
             print("Invalid Data")  
             return redirect('sih_useradmin')  

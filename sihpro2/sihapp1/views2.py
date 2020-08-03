@@ -138,7 +138,16 @@ def fun1(request, *args, **kwargs):
 
 
 def show_analysis(request, *args , **kwargs):
-    pass
+    bacteria_name = request.POST['bacteria-select']
+    b_year = request.POST['b-year']
+    print(bacteria_name)
+    print(b_year)
+    data_b = {
+        'bname':bacteria_name,
+        'byear':b_year,
+    }
+    return render(request,"dash_get2.html",data_b)
+
 
 def dash2_data1(request, *args, **kwargs):
     return JsonResponse()

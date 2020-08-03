@@ -63,7 +63,7 @@
                     <ul>
                         <li class="menu-title">Main</li>
                         <li class="active">
-                            <a href="admin_dashboard_new.html"><i class="fa fa-dashboard"></i> <span>Overall</span></a>
+                            <a href="admin_dashboard_new.html"><i class="fa fa-dashboard"></i> <span>Prediction Dashboard</span></a>
                         </li>
 						
                         <li>
@@ -81,30 +81,21 @@
                 <div class="tab-content text-center" id="pills-tabContent">
 					<h2>Welcome {{aname}}</h2>
                     <div class="tab-pane fade show active text-center mt-5" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-                        <form action="?" method="POST" id="otpvalidation">
+                        <form action="show_analysis" method="POST" id="otpvalidation">
+                            {%csrf_token%}
                                 <div class="form-group row justify-content-center align-items-center text-center">
 									<div class="form-group col-md-3">
 										<label for="inputBacteria">Bacteria Name</label>
-										<select name="inputBacteria" class="form-control" id="inputBacteria">
-										  <option value="Choice 1">Select any one</option>
-										  <option value="Choice 2">Bacteria 1</option>
-										  <option value="Choice 3">Bacteria 2</option>
-                                          <option value="Choice 4">Bacteria 3</option>
-                                          <option value="Choice 4">Bacteria 4</option>
+										<select name="bacteria-select" class="form-control" id="bacteria-select">
+										  <option value="bvalues1">Bacteria 1</option>
+										  <option value="bvalues2">Bacteria 2</option>
+                                          <option value="bvalues3">Bacteria 3</option>
+                                          <option value="bvalues4">Bacteria 4</option>
 										</select>
 									</div>
 									<div class="form-group col-md-2">
 										<label for="inputYear">Year</label>
-										<select name="inputYear" class="form-control" id="inputYear">
-										  <option value="Choice 1">Select any one</option>
-										  <option value="Choice 2">2015</option>
-										  <option value="Choice 3">2016</option>
-										  <option value="Choice 4">2017</option>
-										  <option value="Choice 5">2018</option>
-										  <option value="Choice 6">2019</option>
-										  <option value="Choice 7">2020</option>
-										  <option value="Choice 8">Other</option>
-										</select>
+										<input type="text" name="b-year" class="form-control" id="b-year" placeholder="Year" required autofocus>
 									</div>
                                     <div class="col-sm-2 my-3">
                                         <button type="submit" class="btn btn-primary" value="submit" onclick="">Show Analysis</button>
