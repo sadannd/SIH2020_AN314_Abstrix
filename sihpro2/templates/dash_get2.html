@@ -71,7 +71,7 @@
                             <a name ="bname" id = "bname"><i class="fa fa-wheelchair"></i> <span>{{bname}}</span></a>
                         </li>
                         <li>
-                            <a name="byear" id ="byear"><i class="fa fa-wheelchair"></i> <span>{{byear}}</span></a>
+                            <a name="byear" id ="byear" value = {{byear}}><i class="fa fa-wheelchair"></i> <span>{{byear}}</span></a>
                         </li>
                         
                         
@@ -230,10 +230,49 @@
         //clearCanvas(c2)
         //clearCanvas(c3)
         //clearCanvas(c4)
-    
+        var bname = $("#bname").text()
+        var b1 = " b1"
+        var b2 = " b2"
+        var b3 = " b3"
+        var b4 = " b4"
+        console.log(typeof(bname))
+        //var bname1 = 0
+        function get_bnum(bname){
+            console.log(bname)
+            console.log(b2)
+            let bname1=0
+            if(bname.localeCompare(b1)==0){
+                bname1 = 1;
+            }
+            else if(bname.localeCompare(b2)==0){
+                bname1 = 2;
+            }
+            else if (bname.localeCompare(b3)==0){
+                bname1 = 3;
+            }
+            else if(bname.localeCompare(b4)==0){
+               bname1 = 4;
+            }
+            return bname1
+        } 
+        
+        var bnum1 = get_bnum(bname)
+
+        var byear = $("#byear").text()
+        var byear2 = parseInt(byear)
+        console.log(byear2)
+        console.log(typeof(byear2)) 
+        console.log(bnum1)
+        console.log(typeof(bnum1)) 
         $.ajax({
             method: "GET",
             url:endpoint,
+            
+            data:{
+                'bnum1': bnum1,
+                'byear2': byear2,
+
+            },
             success: function(data1){
                 label1 = data1.labelsx
                 count1 = data1.values1
@@ -415,7 +454,9 @@
             $.ajax({                       // initialize an AJAX request
                 url:endpoint,
                 data: {
-                    'state': stateId       // add the state id to the GET parameters
+                    'state': stateId,
+                    'bnum1': bnum1,
+                    'byear2': byear2,      // add the state id to the GET parameters
                   },
                 success: function(data1){
                    

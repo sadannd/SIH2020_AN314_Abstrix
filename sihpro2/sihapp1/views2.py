@@ -72,7 +72,12 @@ def fun1(request, *args, **kwargs):
     state = request.GET.get('state')
     state_age = request.GET.get('state_age')
     state_gender = request.GET.get('state_gender')
+    bnum1 = int(request.GET.get('bnum1'))
+    byear2 = int(request.GET.get('byear2'))
     print(state)
+    print(bnum1, byear2)
+    print(type(bnum1))
+    
     #reg2 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\reg1.sav', 'rb'))
     #print(reg2.predict([(0,25,4,28,1,0,3,3)]))
     x=[]
@@ -82,19 +87,19 @@ def fun1(request, *args, **kwargs):
     if state == "values1":
         reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\General1.sav', 'rb'))
         for level in range (1,5):       
-            x1.append(reg4.predict([(1,level,2050)])[0])
+            x1.append(reg4.predict([(2,level,2030)])[0])
 
         print(x1)
     elif state =="values2":
         reg5 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location2.sav', 'rb'))
         for level in range (1,5):       
-            x1.append(reg5.predict([(1,level,2050)])[0])
+            x1.append(reg5.predict([(2,level,2030)])[0])
 
         print(x1)
     elif state == "values3":
         reg6 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location3.sav', 'rb'))
         for level in range (1,5):       
-            x1.append(reg6.predict([(1,level,2050)])[0])
+            x1.append(reg6.predict([(2,level,2030)])[0])
 
         print("This is x1",x1)
 
@@ -107,7 +112,7 @@ def fun1(request, *args, **kwargs):
 
     labelsx = ["Level1", "Level2", "Level3", "Level4"]
     for level in range (1,5):       
-        x.append(reg3.predict([(1,level,2030)])[0])
+        x.append(reg3.predict([(bnum1,level,byear2)])[0])
     
     print("This is x",x)
 
@@ -140,6 +145,8 @@ def fun1(request, *args, **kwargs):
 def show_analysis(request, *args , **kwargs):
     bacteria_name = request.POST['bacteria-select']
     b_year = request.POST['b-year']
+    request.session['bacteria_name'] = bacteria_name
+    request.session['b_year']: b_year
     print(bacteria_name)
     print(b_year)
     data_b = {
