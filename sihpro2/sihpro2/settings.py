@@ -25,18 +25,12 @@ SECRET_KEY = '#_-!&!*cp6*1ks+&zol+j+avl0o$$znl7e#ye@1-&n8u40h!0g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
+
 
 INSTALLED_APPS = [
     'sihapp1.apps.Sihapp1Config',
@@ -47,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'phonenumber_field',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'abstrixsih4',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': 'root',
         'HOST': 'localhost'
     }
 }
