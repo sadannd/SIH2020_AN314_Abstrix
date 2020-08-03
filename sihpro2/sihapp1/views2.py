@@ -87,6 +87,7 @@ def fun1(request, *args, **kwargs):
     x1=[]
     x2=[]
     x3=[]
+    x4=[]
     if state == "values1":
         reg4 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\LocalRepoAbstrix\sihpro2\sihapp1\Location1.sav', 'rb'))
         for level in range (1,5):       
@@ -151,13 +152,19 @@ def fun1(request, *args, **kwargs):
     #    x2.append(reg9.predict([(state_age1,2,level,2050)])[0])
     
     #print("This is x2",x2)
+    reg9 = pickle.load(open(r'C:\Users\khede\OneDrive\Documents\GitHub\SIH2020_AN314_Abstrix\sihpro2\sihapp1\Efficiency.sav', 'rb'))
+    for anti in range (0,4):       
+        x4.append(reg9.predict([(anti,2020)])[0])
+
+    print(x4)
 
     data1 = {
         "labelsx":labelsx,
         "values1":x,
         "values22":x1,
         "values33":x3,
-        #"values44":x2,
+        "values43":x2,
+        "values44":x4,
         
 
     }
